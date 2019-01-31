@@ -1,0 +1,99 @@
+/*Searchbar */
+ActionBar {
+	background-color: #fff;
+	height: 50;
+}
+.sb-opt {
+	font-size: 25;
+	text-align: left;
+	width: auto;
+}
+SearchBar {
+	background-color: #f8f8f8;
+	height: 35;
+	width: 82%;
+	border-color: #9dc7d8;
+	border-width: 1;
+	margin-right: -10;
+}
+.backbtn {
+	margin: 0;
+	transform: scaleX(-1);
+	height: 25;
+	width: 25;
+	margin-right: 10;
+}
+
+/*Search content*/
+.search-categories {
+	height: 40;
+	padding: 5;
+}
+	Button {
+		background-color: #fff;
+		padding: 0;
+		width: 30%;
+		margin: 5;
+		border-radius: 5
+	}
+		.lbl {
+			font-size: 15;
+			color: #ccc;
+		}
+			
+					.userimage {
+						width: 70;
+						height: 70;
+					}
+					.description {
+						font-size: 15
+					}
+/*project list style*/
+	ListView {
+		height: 100%;
+	}
+				.student-lbl-content {
+					margin: 10 0;
+					padding: 0;
+				}
+					.prject-name { font-size: 15; }
+					.username { font-size: 15; }
+					.email { font-size: 13; }
+					.footer-lbl Label {
+						margin: 0;
+						margin-right: 5;
+					}
+
+/*student list style*/
+		.lbl-lyt {
+			margin-top: 10;
+			margin-left: 5; 
+		}
+			.lbl-lyt Label {
+				margin: 0;
+			}
+			.user-email {
+				font-weight: 100;
+				font-size: 15;
+			}
+				.proj-lbl-layout-stndt {
+					margin: 0 10;
+					margin-top: 10;
+				}
+
+
+
+/*Segment bar*/
+SegmentBar {
+	background-color: #ced
+}
+
+.label-container {
+	padding: 10;
+}
+	.user-name {
+		font-size: 18;
+	}
+	.lineheight {
+		line-height: 90%;
+	}

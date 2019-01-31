@@ -1,0 +1,11 @@
+.modal-action-bar {
+		width: 100%;
+		height: 50;
+	}
+		.title-action-bar { font-size: 20; }
+		.close-icon { 
+			/*font-size: 30%;*/
+			width: 25;
+			height: 25;
+		}
+		.shipment-lbl { font-size: 15% }

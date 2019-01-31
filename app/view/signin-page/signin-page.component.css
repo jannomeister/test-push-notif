@@ -1,0 +1,78 @@
+Page {
+	margin-top: -5;
+}
+Label {
+	horizontal-align: center;
+    vertical-align: top;
+}
+TextField {
+	width: 80%;
+	height: 70;
+	margin-bottom: 5; 
+	border-color: #fff;
+	background-color: #fff;
+	padding: 20;
+	color: #222222;
+}
+Button.signin-btn {
+	width: 80%;
+	margin-top: 5;
+    background-color: #00a9ed;
+    height: 70;
+    font-size: 18;
+}
+Button.back-btn {
+	width: 80%;
+	margin-top: 5;
+    background-color: #fff;
+    height: 70;
+    font-size: 18;
+}
+.top-layout {
+	height: 55;
+	width: 90%;
+}
+.action-bar {
+    background-color: transparent;
+    border-radius: 1;
+    /*padding: 0;*/
+    /*margin: -50;*/
+    width: 0;
+    height: 0
+
+}
+.signin-title { font-size: 20; }
+.home-lbl {
+	margin-top: 20;
+	margin-right: 15%;
+	font-size: 20;
+}
+.yd-logo {
+	margin: 20 0; 
+}
+.signin-btn-label {
+	color: white;
+    font-size: 15;
+    font-weight: 100;
+    background-color: transparent;
+}
+.footnote {
+	color: #6d6d6f;
+	/*border-top: 20;*/
+	/*margin-top: -1;*/
+}
+.activity-indicator {
+	z-index: 5;
+	color: #00a9ed;
+	margin-bottom: 20;
+}
+.footer {
+	color: #6d6d6f;
+	font-size: 20;
+	vertical-align: bottom;
+	margin-top: 0;
+}
+.error-container {
+	margin: 0 40;
+}
+

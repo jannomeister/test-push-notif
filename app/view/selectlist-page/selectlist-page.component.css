@@ -1,0 +1,101 @@
+.actionbar {
+	background-color: white;
+	height: 50;
+	width: 100%;
+	padding: 5;
+}
+.close-icon {
+	width: 18;
+	/*background-image: url('~/assets/icon/close-icon.png');
+	background-size: cover;
+	background-repeat: no-repeat;*/
+}
+.bw-2 {
+	border-width: 2;
+	/*border-color: white;*/
+}
+SearchBar {
+	width: 90%;
+	background-color: white;
+}
+.backbtn {
+	margin: 0;
+	transform: scaleX(-1);
+	height: 25;
+	width: 25;
+	margin-right: 10;
+}
+.footnote {
+	horizontal-align: left;
+	margin-bottom: 0;
+}
+.active-filter {
+	background-color: gray;
+	color: white;
+}
+.filter-btn { 
+	font-size: 13; 
+	width: 20%; 
+	border-width: 1; 
+	border-color: #ccc; 
+	height: auto; 
+	margin: 0 5;
+}
+.filter-lbl { font-size: 10; }
+.dd-content {
+	width: 28%;
+	height: auto;
+	border-width: 1; 
+	border-color: #ccc; 
+	border-radius: 3;
+	margin: 0 5;
+}
+	DropDown {
+		border-color: transparent;
+		background-color: white;
+		height: 50;
+		font-size: 13;
+	}
+	.arrow-dwn {
+		font-size: 10;
+	}
+ListView {
+	background-color: #fff;
+	height: 100%;
+}
+	.list-content {
+		height: 50;
+		margin: 0 5;
+		padding: 5
+	}	
+		/*.wrap {
+			white-space: normal;
+			margin: 10 5 0 5;
+		}*/
+			.userimage { width: 115; height: auto; }
+			.userimage-thumbnail {
+				margin: 0 15 0 0;
+				background-size: contain;
+				background-position: left top;
+				background-repeat: no-repeat;
+			}
+			.username {
+				horizontal-align: left;
+				font-size: 15;
+				font-weight: 600;
+				margin-bottom: 0;
+			}
+			.description {
+				font-size: 15;
+				font-weight: 100;
+				/*white-space: normal;*/
+			}
+		/*.location {
+			color: #34c0ee;
+		}*/
+		.search-details { margin-top: 0 }
+		.location,
+		.datetime {
+			margin: 0 5;
+			margin-bottom: 5;
+		}

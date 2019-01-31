@@ -1,0 +1,108 @@
+
+	<StackLayout class="page-container">
+		<GridLayout columns="*,10" class="page-header">
+			<Image column="0" src="~/assets/icon/close-icon-light.png" (tap)="onClose()"></Image>
+			<Label column="1" text="Project Report" class="title-lbl"></Label>
+		</GridLayout>
+		<ScrollView orientation="vertical">
+			<StackLayout>
+				<StackLayout class="pr-container">
+					<Label 
+						text="Bands shipped:" 
+						class="tf-lbl font-white align-left tf-m"></Label>
+
+					<StackLayout 
+						orientation="horizontal"
+						class="mb-10">
+						<TextField 
+							hint="No of Bands" 
+							keyboardType="phone" 
+							class="yb-tf"
+							[(ngModel)]="data.bandsShipped"
+							editable="false"></TextField>
+						<TextField 
+							text="pcs" class="yb-tf-sub" 
+							editable="false"></TextField>
+					</StackLayout>
+
+					<Label 
+						text="Bands received:" 
+						class="tf-lbl font-white align-left tf-m"></Label>
+
+					<StackLayout 
+						orientation="horizontal"
+						class="mb-10">
+						<TextField 
+							hint="No of Bands" 
+							keyboardType="phone" 
+							class="yb-tf"
+							[(ngModel)]="data.bandsReceived"
+							editable="false"></TextField>
+						<TextField text="pcs" class="yb-tf-sub" editable="false"></TextField>
+					</StackLayout>
+
+					<Label 
+						text="Bands to return:" 
+						class="tf-lbl font-white align-left tf-m"></Label>
+
+					<StackLayout 
+						orientation="horizontal"
+						class="mb-10">
+						<TextField 
+							hint="No of Bands" 
+							[(ngModel)]="report.totalExtraBand" 
+							keyboardType="phone" 
+							class="yb-tf"></TextField>
+						<TextField text="pcs" class="yb-tf-sub" editable="false"></TextField>
+					</StackLayout>
+
+					<Label 
+						text="Extra donations if applicable:" 
+						class="tf-lbl font-white align-left tf-m"></Label>
+
+					<StackLayout 
+						orientation="horizontal"
+						class="mb-10">
+						<TextField 
+							hint="00.0" 
+							[(ngModel)]="report.extraDonation" 
+							keyboardType="phone" 
+							class="yb-tf-1"></TextField>
+						<TextField text="$" class="yb-tf-sub" editable="false"></TextField>
+					</StackLayout>
+
+					<StackLayout orientation="horizontal">
+						<Label text="Bands Sold: "></Label>
+						<Label [text]="data.bandsSold"></Label>
+					</StackLayout>
+
+					<StackLayout orientation="horizontal">
+						<Label text="Money raised by sales: "></Label>
+						<Label [text]="'$' + data.raisedMoney"></Label>
+					</StackLayout>
+
+
+					<StackLayout orientation="horizontal">
+						<Label text="Total money raised: "></Label>
+						<Label [text]="'$' + getTotalRaisedMoney()"></Label>
+					</StackLayout>
+
+					<Button 
+						text="Submit" 
+						(tap)="submit()" 
+						class="next-btn yb-btn uppercase font-white align-center"></Button>
+				</StackLayout>
+
+				<StackLayout class="pr-container vertical-center" [visibility]="pageNum===2 ? 'visible' : 'collapsed'">
+					<StackLayout class="tf-m">
+						<Label text="Great!" class="large-font font-white align-left"></Label>
+						<Label text="The project manager is checking your report." class="limit-width tf-lbl1 font-white wrap-content align-left"></Label>
+						<Label text="Please wait for an email soon." class="tf-lbl1 font-white align-left"></Label>
+					</StackLayout>
+					<Button text="Done" (tap)="done()" class="next-btn yb-btn uppercase font-white align-center"></Button>
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+	</StackLayout>
+
+

@@ -1,0 +1,75 @@
+
+	<StackLayout xmlns:ns="nativescript-carousel" class="align-center">
+		<GridLayout margin="0,0,0,0" height="100%">
+			<Carousel height="100%" [pageChanged]="myChangeEvent" pageTapped="mySelectedEvent">
+			    <CarouselItem id="slide1"  verticalAlignment="center" backgroundColor="#00bbf0">
+			    	<AbsoluteLayout class="slide align-center">
+			    		<Image src="~/assets/icon/Bottom-image-3.jpg" class="ci-slide-1 align-center"></Image>
+
+						<StackLayout class="slide-layout" (tap)="skip()">
+			    			<Label text="skip" class="skip-lbl align-right font-white"></Label>
+			        	</StackLayout>
+			        	<StackLayout class="slide-title-layout align-center">
+			    			<Label text="Skype call" class="slide-title1 align-left font-white"></Label>
+			    			<Label text="Connect with student you are sponsoring" class="slide-title-description align-left font-white wrap-content"></Label>
+			    			<StackLayout orientation="horizontal" class="slide-number-container">
+			    				<Label text="1" class="slide-number align-left font-white"></Label>
+			    				<Image src="~/assets/icon/skyp-icon-blue.png" class="skype-icon"></Image>
+			    			</StackLayout>
+			        	</StackLayout>
+			        </AbsoluteLayout>
+			    </CarouselItem>
+
+			    <CarouselItem id="slide2" verticalAlignment="center" backgroundColor="#fad25b">
+			     	<AbsoluteLayout>
+			        	<Image src="~/assets/icon/shirt.jpg" class="ci-slide-2 align-center"></Image>
+
+			        	<StackLayout class="slide-layout" (tap)="skip()">
+			    			<Label text="skip" class="skip-lbl align-right font-white"></Label>
+			        	</StackLayout>
+			        	<StackLayout class="slide-title-layout align-center">
+			    			<Label text="Order T-Shirts" class="slide-title2 align-left font-white wrap-content"></Label>
+			    			<Label text="Duisquam est qui dolorem ipsum" class="slide-title-description align-left font-white wrap-content"></Label>
+			    			<StackLayout orientation="horizontal" class="slide-number-container">
+			    				<Label text="2" class="slide-number align-left font-white"></Label>
+			    			</StackLayout>
+			        	</StackLayout>
+			        </AbsoluteLayout>
+			    </CarouselItem>
+
+			    <CarouselItem id="slide3" verticalAlignment="center" backgroundColor="#e20023">
+			    	<AbsoluteLayout>
+			        	<Image src="~/assets/icon/social.jpg" class="ci-slide-3 align-center"></Image>
+
+			        	<StackLayout class="slide-layout" (tap)="skip()">
+			    			<Label text="skip" class="skip-lbl align-right font-white"></Label>
+			        	</StackLayout>
+			        	<StackLayout class="slide-title-layout align-center">
+			    			<Label text="Other social media" class="slide-title2 align-left font-white wrap-content capitalize"></Label>
+			    			<Label text="Duisquam est qui dolorem ipsum" class="slide-title-description align-left font-white wrap-content"></Label>
+			    			<StackLayout orientation="horizontal" class="slide-number-container">
+			    				<Label text="3" class="slide-number align-left font-white"></Label>
+			    			</StackLayout>
+			        	</StackLayout>
+			        </AbsoluteLayout>
+			    </CarouselItem>
+
+			    <CarouselItem id="slide4" verticalAlignment="center" backgroundColor="#5c20a4">
+			    	<AbsoluteLayout>
+			        	<Image src="~/assets/icon/news.jpg" class="ci-slide-3 align-center"></Image>
+
+			        	<StackLayout class="slide-layout" (tap)="skip()">
+			    			<Label text="skip" class="skip-lbl align-right font-white"></Label>
+			        	</StackLayout>
+			        	<StackLayout class="slide-title-layout align-center">
+			    			<Label text="News" class="slide-title2 align-left font-white wrap-content capitalize"></Label>
+			    			<Label text="Duisquam est qui dolorem ipsum" class="slide-title-description align-left font-white wrap-content"></Label>
+			    			<StackLayout orientation="horizontal" class="slide-number-container">
+			    				<Label text="4" class="slide-number align-left font-white"></Label>
+			    			</StackLayout>
+			        	</StackLayout>
+			        </AbsoluteLayout>
+			    </CarouselItem>
+			</Carousel>
+		</GridLayout>
+	</StackLayout>

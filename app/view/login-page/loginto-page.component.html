@@ -1,0 +1,35 @@
+
+	<GridLayout rows="*,60" class="page">
+		<StackLayout row="0" orienation="vertical">
+			<Label class="title-lbl align-left">
+				<FormattedString>
+					<Span text="This is last" fontAttributes="Bold"></Span>
+				</FormattedString>
+			</Label>
+			<Label text="Please login to the following for smoother use." class="description-lbl align-left wrap-content"></Label>
+
+			<ActivityIndicator row="0" #activityIndicator [busy]="!isInitialized" *ngIf="!isInitialized" class="activity-indicator"></ActivityIndicator>
+			
+			<StackLayout *ngIf="isInitialized">
+				<StackLayout row="0" *ngIf="!hasFacebook && !hasFacebookLinkedAccount">
+					<Button class="signin-fb-btn yb-btn" (tap)="connectToFacebook()" [isEnabled]="!hasFacebook">
+					 	<Span class="signin-fb-btn-icon font-awesome" text="&#xf09a;       "></Span>
+						<Span class="signin-fb-btn-label " [text]="facebookName"></Span>
+					</Button>
+				</StackLayout>
+
+				<StackLayout row="1"> 
+					<Button class="signin-ggl-btn yb-btn" (tap)="connectToTwitter()">
+						<Span class="signin-ggl-btn-icon font-awesome" text="&#xf099; "></Span>
+						<Span class="signin-ggl-btn-label " text="Log in with Twitter"></Span>
+					</Button>
+
+					<!-- <TNSTwitterButton 
+						*ngIf="!hasTwitterLinkedAccount"
+						#twitter style="height: 75; width: 310"
+					></TNSTwitterButton> -->
+				</StackLayout>
+			</StackLayout>
+		</StackLayout>
+		<Label row="1" text="Skip" class="skip-lbl align-center" (tap)="skip()"></Label>
+	</GridLayout>

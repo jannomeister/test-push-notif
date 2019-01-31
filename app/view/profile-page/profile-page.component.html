@@ -1,0 +1,208 @@
+
+	<actionbar [pageName]="'profile'"></actionbar>
+
+	<GridLayout rows="*,60" class="container">
+		<StackLayout *ngIf="!isInitialized">
+			<shimmer [type]="'profile'"></shimmer>
+		</StackLayout>
+
+		<ListView 
+			*ngIf="isInitialized"
+			[items]="projects" 
+			[itemTemplateSelector]="templateSelector" 
+			(itemLoading)="onItemLoading($event)"
+			margin="0">
+			<ng-template nsTemplateKey="header" let-item="item">
+		        <StackLayout (tap)="onTap()">
+		        	<StackLayout orientation="horizontal" class="profile-cover" >
+						<StackLayout class="user-label">
+							<Label 
+								[text]="user.getFullName()" 
+								class="user-fullname capitalize"></Label>
+							<Label 
+								[text]="user.getUserName()" 
+								class="user-email font-medium"></Label>
+						</StackLayout>
+					</StackLayout>
+					<StackLayout 
+						class="user-image-container"
+						(tap)="gotoEditProfile()">
+						<Image 
+							[src]="user.imageUrl" 
+							class="user-image" 
+							stretch="aspectFill"></Image>
+					</StackLayout> 
+
+					<GridLayout 
+						rows="*,*,*,*" 
+						columns="*" 
+						class="details-container">
+						<StackLayout 
+							row="0" 
+							orientation="horizontal" 
+							class="mtb-5">
+							<Image 
+								src="~/assets/icon/user.png" 
+								class="icon"></Image>
+							<Label class="detail-label">
+								<FormattedString class="detail-label">
+									<Span text="Member since "></Span>
+									<Span [text]="user.getMemberYear()" fontWeight="Bold"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+						<StackLayout 
+							row="1" 
+							orientation="horizontal" 
+							class="mtb-5">
+							<Image 
+								src="~/assets/icon/profile-email.png" 
+								class="icon"></Image>
+							<Label class="detail-label">
+								<FormattedString class="detail-label">
+							        <Span [text]="user.email" fontWeight="Bold" class="detail-label"></Span>
+							    </FormattedString>
+							</Label>
+						</StackLayout>
+						<StackLayout 
+							row="2" 
+							orientation="horizontal" 
+							class="mtb-5">
+							<Image 
+								src="~/assets/icon/projector-screen.png" 
+								class="icon"></Image>
+							<ActivityIndicator 
+				    			#activityIndicator 
+				    			[busy]="isProjectLoading" 
+		    					*ngIf="!isProjectInitialized"
+				    			busy="true" 
+				    			width="50" 
+				    			height="50"
+				    		></ActivityIndicator>
+							<Label *ngIf="isProjectInitialized">
+								<FormattedString class="detail-label">
+									<Span [text]="user.totalProject +' '" fontWeight="Bold"></Span>
+									<Span text="projects started" ></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+						<StackLayout 
+							[visibility]="user.country ? 'visible' : 'collapsed' " 
+							row="3" 
+							orientation="horizontal" 
+							class="mtb-5">
+							<Image 
+								src="~/assets/icon/placeholder-for-map.png" 
+								class="icon"></Image>
+							<Label class="detail-label">
+								<FormattedString class="detail-label">
+									<Span text="Lives in "></Span>
+									<Span *ngIf="user.country" [text]="user.country" fontWeight="Bold"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+					</GridLayout>
+					<ActivityIndicator 
+		    			#activityIndicator 
+		    			[busy]="isProjectLoading" 
+		    			*ngIf="!isProjectInitialized"
+		    			width="50" 
+		    			height="50"
+		    		></ActivityIndicator>
+				    <StackLayout *ngIf="isProjectInitialized" class="label-divider p-10 mtb-5">
+				   		<Label *ngIf="!isProjectEmpty" text="Recent & Previous projects" class="footnote uppercase"></Label>
+				   		<Label *ngIf="isProjectEmpty" text="no project created" class="footnote uppercase"></Label>
+				   	</StackLayout>
+		        </StackLayout>
+		    </ng-template>
+
+		    <ng-template nsTemplateKey="projects" let-project="item">
+		    	<StackLayout orientation="vertical" class="list-card list-card-border" 
+		    		(tap)="onTap()">
+			    	<StackLayout class="list-template" *ngIf="!isProjectEmpty">
+			        	<StackLayout orientation="horizontal" class="list-card-header">
+				        	<Image [src]="user.imageUrl" class="img-avatar"></Image>
+				        	<StackLayout class="label-container mt-5">
+				        		<Label row="0" class="username capitalize m-0">
+				        			<FormattedString>
+				        				<Span [text]="user.getFullName() + '  '"></Span>
+				        				<!-- PENDING -->
+				        				<Span *ngIf="project.progress == 'pending'" text="&#xf017;" class="font-awesome font-green"></Span>
+				        				<!-- APPROVED -->
+				        				<Span *ngIf="project.progress == 'approved'" text="&#xf164;" class="font-awesome font-orange"></Span>
+				        				<!-- REJECTED -->
+				        				<Span *ngIf="project.progress == 'rejected'" text="&#xf06a;" class="font-awesome font-red"></Span>
+				        				<!-- ON GOING -->
+				        				<Span *ngIf="project.progress == 'ongoing'" text="&#xf0e7;" class="font-awesome font-green"></Span>
+				        				<!-- DONE -->
+				        				<Span *ngIf="project.progress == 'done'" text="&#xf14a;" class="font-awesome font-blue"></Span>
+				        				
+				        			</FormattedString>
+				        		</Label>
+
+				        		<StackLayout 
+				        			row="1" 
+				        			orientation="horizontal" 
+				        			class="date-country-lbl">
+					        		<Label 
+					        			*ngIf="user.country" 
+					        			[text]="'in ' + user.country +' '" 
+					        			class="location m-0"></Label>
+					        		<Label 
+					        			[text]="project.datetimeCreated | amTimeAgo" 
+					        			class="datetime m-0"></Label>
+				        		</StackLayout>
+				        	</StackLayout>
+				        	<StackLayout 
+				        		orientation="horizontal" 
+				        		class="header-icon-container">
+				        		<Button 
+				        			class="font-awesome header-icon-fwd" 
+				        			text="&#xf064;"></Button>
+				        	</StackLayout>
+				    	</StackLayout>
+
+			        	<GridLayout 
+			        		*ngIf="project.imageUrl" 
+			        		[backgroundImage]="project.imageUrl" 
+			        		class="student-cover-img"></GridLayout>
+
+				        <StackLayout 
+				        	orientation="horizontal" 
+				        	class="list-card-footer" 
+				        	(tap)="viewProject(project)">
+				        	<StackLayout 
+				        		orientation="vertical" 
+				        		class="label-content">
+								<Label 
+									[text]="project.schoolAddress" 
+									class="img-label capitalize wrap-content" ></Label>
+								<Label 
+									*ngIf="project.projectDescription" 
+									[text]="project.projectDescription" 
+									class="img-descrpnt wrap-content" ></Label>
+								<Label 
+									*ngIf="!project.projectDescription" 
+									text="No description" 
+									class="img-descrpnt" ></Label>
+							</StackLayout>
+							<Image 
+								src="~/assets/icon/arrow-right-icon.png" 
+								height="15" 
+								width="15"></Image>
+				        </StackLayout>
+			        </StackLayout>
+			        <StackLayout 
+			        	class="list-template1" 
+			        	*ngIf="isProjectEmpty">
+			        	<Label 
+			        		text="no project created" 
+			        		class="empty-lbl capitalize font-light font-gray align-center text-center"></Label>
+			        </StackLayout>
+			    </StackLayout>
+		    </ng-template>
+		</ListView>
+		<tabs [activeTab]="'profile'"></tabs>
+	</GridLayout>
+
+

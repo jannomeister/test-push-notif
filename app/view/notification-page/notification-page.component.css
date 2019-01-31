@@ -1,0 +1,60 @@
+Page {
+	background-color: #f8f8f8;
+}
+.selected {
+	color: #00adee;
+}
+.footnote {
+	horizontal-align: left;
+	margin-bottom: 0;
+}
+ListView {
+	background-color: #fff;
+	height: 100%;
+}
+	.list-content {
+		height: 50;
+		margin: 0 5;
+		padding: 5
+	}	
+		.userimage {
+			height: 65;
+			width: 65;
+			vertical-align: center;
+			margin: 5
+		}
+		.wrap {
+			white-space: normal;
+			margin: 10 5 0 5;
+		}
+			.username {
+				font-size: 15;
+			}
+			.description {
+				font-size: 15;
+				/*white-space: normal;*/
+			}
+		.location {
+			color: #34c0ee;
+		}
+		.location,
+		.datetime {
+			margin: 0;
+			margin-bottom: 5;
+		}
+		.label-container {
+			width: 55%;
+			/*background-color: #def;*/
+		}
+		.confirm-cancel-btn-container {
+			/*background-color: #ced;*/
+			
+			width: 30%;
+		}
+			.confirm-btn {
+				width: 35%;
+				height: 25;
+				margin: 0;
+				padding: 0;
+				vertical-align: center;
+			}

@@ -1,0 +1,61 @@
+
+<StackLayout class="modal-content bg-yb">
+	<!-- <StackLayout class="close-lyout">
+		<Image src="~/assets/icon/close-icon.png" class="close-icon" (tap)="close()"></Image>
+	</StackLayout> -->
+	<ScrollView>
+		<StackLayout class="vertical-top p-10">
+			<GridLayout rows="auto" columns="*">
+		       	<Label 
+					row="0" 
+		        	col="0" 
+		        	class="align-center vertical-center mtb-10"
+					text="Loading media..."></Label>
+		        <Image 
+		        	row="0" 
+		        	col="0" 
+		        	*ngIf="media.type === 'image'"
+		        	[src]="media.link" 
+					(longPress)="saveMedia()"
+					width="100%" 
+					height="auto" 
+		        	horizontalAlignment="center" 
+		        	class="img mtb-20"></Image>
+
+		        <VideoPlayer
+		        	#videoPlayer
+		        	row="0" 
+		        	col="0"
+		        	*ngIf="media.type === 'video'"
+			    	src="{{media.link}}"
+			    	autoplay="false"
+			    	width="100%"
+			    	height="300"
+			    	horizontalAlignment="center" 
+			    	class="img m-20"></VideoPlayer>
+		    </GridLayout>
+
+		    <Button 
+		    	*ngIf="media.type === 'video'"
+		    	class="bg-blue font-medium c-white yb-btn"
+		    	width="90%"
+		    	(tap)="saveVideo()"
+		    	text="Save Video">
+			</Button>
+
+		    <Label 
+		    	*ngIf="media.type === 'image'"
+	        	class="align-center font-black font-bold m-0"
+	        	textWrap="true"
+	        	fontSize="15"
+	        	text="Hold down the image to show options"></Label>
+
+	        <Button 
+		    	class="bg-white font-medium c-black yb-btn m-10"
+		    	width="90%"
+		    	(tap)="close()"
+		    	text="Go Back">
+			</Button>
+		</StackLayout>
+	</ScrollView>
+</StackLayout>

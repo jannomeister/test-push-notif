@@ -1,0 +1,19 @@
+.page {
+	background-color: #f9fafc;
+}
+	.modal-action-bar {
+		width: 100%;
+		height: 50;
+	}
+		.title-action-bar {
+			font-size: 20;
+
+		}
+		.close-icon {
+			width: 20;
+			height: 20;
+		}
+	.page-container {
+		margin: 10 20;
+		margin-top: 20;
+	}

@@ -1,0 +1,16 @@
+<StackLayout class="page">
+	<GridLayout columns="*,10" class="modal-action-bar">
+		<Label column="0" text="update video" class="title-action-bar text-center uppercase"></Label>
+		<Image column="1" src="~/assets/icon/close-icon.png" class="close-icon align-right" (tap)="close()"></Image>
+	</GridLayout>
+	<ScrollView class="vertical-center">
+		<StackLayout class="page-container">
+			<Label text="Paste the link of your video here!" class="page-title font-black text-center wrap-content mb-20"></Label>
+			<TextField hint="https://youtube.com/watch?v=some.id" 
+				(textChange)="onTextChange($event)" 
+				[(ngModel)]="project.videoLink"></TextField>
+			<Button [text]="buttonText" class="uppercase done-btn font-white yb-btn" (tap)="update()"></Button>
+			<Button text="cancel" class="uppercase bg-white font-black yb-btn" (tap)="close()"></Button>
+		</StackLayout>
+	</ScrollView>
+</StackLayout>

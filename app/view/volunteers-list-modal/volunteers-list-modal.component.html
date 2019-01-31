@@ -1,0 +1,29 @@
+<StackLayout class="bg-yb">
+	<GridLayout class="modal-action-bar">
+		<Image 
+			src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png" 
+			width="40%"
+			class="img-logo align-center"></Image>
+		<Image column="1" src="~/assets/icon/close-icon.png" class="close-icon align-right m-10" (tap)="onClose()"></Image>
+	</GridLayout>
+
+	<Label 
+		text="Your Volunteers" 
+		class="volunteers-title font-bold align-center mtb-10"></Label>
+	<ListView [items]="volunteers" class="list-group bg-yb">
+	    <ng-template let-volunteer="item">
+	        <StackLayout orientation="horizontal" class="p-10">
+	        	<Image 
+	        		[src]="volunteer.imageUrl"
+	        		height="70"
+	        		width="70"
+	        		stretch="aspectFill"
+	        		class="align-left m-5"></Image>
+				<StackLayout class="p-5 vertical-center">
+					<Label [text]="volunteer.name" class="username-lbl font-medium"></Label>
+					<Label [text]="volunteer.email" class="email-lbl font-medium font-gray"></Label>
+				</StackLayout>
+			</StackLayout>
+	    </ng-template>
+	</ListView>
+</StackLayout>

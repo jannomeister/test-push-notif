@@ -1,0 +1,14 @@
+
+<StackLayout backgroundColor="white">
+	<GridLayout columns="*,10" class="modal-action-bar">
+		<Label column="0" text="JOIN PROJECT" class="title-action-bar text-center"></Label>
+		<Image column="1" src="~/assets/icon/close-icon.png" class="close-icon align-right" (tap)="onClose()"></Image>
+	</GridLayout>
+	<ScrollView>
+		<StackLayout class="page-container">
+			<Label text="You will be notified once the project leader approves your request." class="page-title font-black text-center wrap-content"></Label>
+
+			<Button text="done" class="uppercase done-btn font-white yb-btn" (tap)="done()"></Button>
+		</StackLayout>
+	</ScrollView>
+</StackLayout>

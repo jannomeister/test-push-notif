@@ -1,0 +1,45 @@
+<GridLayout rows="*,60" backgroundColor="white">
+	<StackLayout row="0" backgroundColor="white">
+		<GridLayout columns="*,10" class="page-header">
+			<Label column="0" text="Feedback" class="align-center font-medium"></Label>
+			<Image column="1" src="~/assets/icon/close-icon.png" class="close-icon align-right" (tap)="onClose()"></Image>
+		</GridLayout>
+		<ScrollView orientation="vertical">
+			<StackLayout>
+				<StackLayout orientation="horizontal" class="pb-container">
+					<Progress 
+						column="0" 
+						[value]="progressValue" 
+						(valueChanged)="onValueChanged($event)" 
+						maxValue="2"></Progress>
+				</StackLayout>
+
+				<!-- PAGE 1 -->
+				<StackLayout *ngIf="pageNum === 1" class="vertical-center">
+					<Label text="Rate your experience" class="align-center wrap-content star-lbl text-center"></Label>
+					<StackLayout 
+						orientation="horizontal" 
+						class="star-container align-center">
+						<StarRating 
+							#rating
+							width="50" 
+							emptyBorderColor="gray" 
+							emptyColor="white" 
+							filledBorderColor="black" 
+							filledColor="#ffb921" 
+							value="{{ data.rating }}" max="5" class="align-center"></StarRating>
+					</StackLayout>
+					<Button text="Next" class="next-btn yb-btn" (tap)="next()"></Button>
+				</StackLayout>
+
+				<!-- PAGE 2 -->
+				<StackLayout *ngIf="pageNum === 2">
+					<Label text="Do you have any suggestions or concerns?" class="align-center wrap-content star-lbl text-center"></Label>
+					<TextView hint="Write here" [(ngModel)]="feedback.concern"></TextView>
+					<Button text="Submit" class="next-btn yb-btn" (tap)="submit()"></Button>
+				</StackLayout>
+				
+			</StackLayout>
+		</ScrollView>
+	</StackLayout>
+</GridLayout>

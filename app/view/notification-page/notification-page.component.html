@@ -1,0 +1,92 @@
+
+	<actionbar [pageName]="'notification'"></actionbar>
+	<GridLayout rows="*,60">
+		<StackLayout orientation="vertical" row="0">
+			<SegmentedBar [items]="items" (selectedIndexChange)="onSelectedIndexChange($event)" class="m-5" ></SegmentedBar>
+
+			<!-- NOTIFICATIONS TAB -->
+			<StackLayout [visibility]="visibility1 ? 'visible' : 'collapsed'">
+				<StackLayout [visibility]="isEmpty && isInitialized ? 'visible' : 'collapsed'">
+					<no-result-page></no-result-page>
+				</StackLayout>
+				<StackLayout [visibility]="isInitialized ? 'collapse' : 'visible'">
+					<ActivityIndicator [busy]="!isInitialized" ></ActivityIndicator>
+				</StackLayout>
+				<PullToRefresh (refresh)="refreshList($event, 'all')" *ngIf="isInitialized">
+					<ListView [items]="notifications" (loadMoreItems)="loadMoreItems('all')">
+						<ng-template let-notification="item" class="list-content">
+							<StackLayout orientation="horizontal" (tap)="notifIsClick(notification)">
+					        	<StackLayout>
+					        		<Image [src]="notification.fromUserId.imageUrl" height="65" width="65" class="userimage"></Image>
+					        	</StackLayout>
+					        	<StackLayout class="pt-5">
+									<Label class="wrap-content">
+										<FormattedString>
+											<Span 
+												[text]="notification.fromUserId.fullName + '  '" 
+												fontWeight="Bold" 
+												class="username capitalize"></Span>
+											<Span [text]="notification.message" class="description "></Span>
+										</FormattedString>
+									</Label>
+									<StackLayout row="1" orientation="horizontal" class="">
+										<Label 
+											*ngIf="notification.fromUserId.country" 
+											[text]="'in ' + notification.fromUserId.country + '  '" 
+											class="location footnote"></Label>
+										<Label [text]="notification.datetimeCreated | amTimeAgo" class="datetime footnote"></Label>
+									</StackLayout>
+								</StackLayout>
+							</StackLayout>
+						</ng-template>
+					</ListView>
+				</PullToRefresh>
+			</StackLayout>
+
+			<!-- REQUESTS TAB -->
+			<StackLayout [visibility]="visibility2 ? 'visible' : 'collapsed'">
+				<StackLayout [visibility]="isEmpty && isInitialized ? 'visible' : 'collapsed'">
+					<no-result-page></no-result-page>
+				</StackLayout>
+				<StackLayout [visibility]="isInitialized ? 'collapse' : 'visible'">
+					<ActivityIndicator [busy]="!isInitialized" ></ActivityIndicator>
+				</StackLayout>
+				<PullToRefresh (refresh)="refreshList($event, 'requests')" *ngIf="isInitialized">
+					<ListView [items]="requests" (loadMoreItems)="loadMoreItems('requests')">
+						<ng-template let-notification="item" class="list-content">
+							<StackLayout orientation="horizontal" (tap)="viewRequestInfo(notification)">
+					        	<Image  
+					        		[src]="notification.imageUrl" 
+					        		class="userimage"
+					        	></Image>
+					        	<StackLayout class="m-5 pt-5">
+									
+										<Label 
+											[text]="notification.name + ' '" 
+											fontWeight="Bold" 
+											class="username wrap-content capitalize"></Label>
+										<Label  
+											[text]="notification.message" 
+											class="description wrap-content mb-5"></Label>
+									
+									<StackLayout 
+										orientation="horizontal">
+										<Label 
+											text="View details " 
+											class="location footnote link-lbl" 
+											(tap)="viewRequestInfo(notification)"></Label>
+										<Label [text]="notification.datetimeCreated | amTimeAgo" class="datetime footnote"></Label>
+									</StackLayout>
+								</StackLayout>
+								<!-- <StackLayout orientation="horizontal" class="confirm-cancel-btn-container">
+									<Image src="~/assets/icon/confirm.png" class="confirm-btn" (tap)="confirmation(notification.projectMemberId, 'approved')"></Image>
+									<Image src="~/assets/icon/cancel.png" class="confirm-btn" (tap)="confirmation(notification.projectMemberId, 'rejected')"></Image>
+								</StackLayout> -->
+							</StackLayout>
+						</ng-template>
+					</ListView>
+				</PullToRefresh>
+			</StackLayout>
+		</StackLayout>
+		<tabs [activeTab]="activeTab"></tabs>
+	</GridLayout>

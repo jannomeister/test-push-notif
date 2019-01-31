@@ -1,0 +1,108 @@
+
+<ScrollView orientation="vertical">
+	<StackLayout class="signin-layout" orientation="vertical" #formControls>
+		<Label class="signin-title" text="Sign In"></Label>
+		<Image class="yd-logo" src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png"></Image>
+
+		<!-- <PreviousNextView>
+			
+		</PreviousNextView> -->
+		<StackLayout>
+			<!-- FIRST NAME -->
+			<TextField hint="First name" [(ngModel)]="user.firstName" #fname="ngModel" required></TextField>
+			<StackLayout class=" align-left error-container" *ngIf="fname.errors && fname.dirty">
+	            <Label 
+	            	*ngIf="fname.errors.required"
+	            	class="error-msg"
+	            	text="First name is required"></Label>
+	        </StackLayout>
+	        <!-- END OF FIRST NAME -->
+
+	        <!-- LAST NAME -->
+			<TextField hint="Last name" [(ngModel)]="user.lastName" #lname="ngModel" required></TextField>
+			<StackLayout class=" align-left error-container" *ngIf="lname.errors && lname.dirty">
+	            <Label 
+	            	*ngIf="lname.errors.required"
+	            	class="error-msg"  
+	            	text="Last name is required"></Label>
+	        </StackLayout>
+	        <!-- END OF LAST NAME -->
+
+	        <!-- EMAIL -->
+			<TextField hint="E-mail" keyboardType="email" [(ngModel)]="user.email"  #email="ngModel" required email></TextField>
+			<StackLayout orientation="horizontal" class=" align-left error-container" *ngIf="email.errors && email.dirty">
+	            <Label 
+	            	*ngIf="email.errors.required"
+	            	class="error-msg" 
+	            	text="Email is required"></Label>
+	            <Label 
+	            	*ngIf="email.errors.email"
+	            	class="error-msg"
+	            	text="Invalid email"></Label>
+	        </StackLayout>
+	        <!-- END OF EMAIL -->
+
+	        <!-- PHONE NUMBER -->
+			<TextField hint="Phone number" keyboardType="number" [(ngModel)]="user.phoneNumber" #number="ngModel" required></TextField>
+			<StackLayout class=" align-left error-container" *ngIf="number.errors && number.dirty">
+	            <Label 
+	            	*ngIf="number.errors.required"
+	            	class="error-msg" 
+	            	text="Phone number is required"></Label>
+	        </StackLayout>
+	        <!-- END OF PHONE NUMBER -->
+
+	        <!-- PASSWORD -->
+			<TextField hint="Password" secure="true" [(ngModel)]="user.password" #password="ngModel" required></TextField>
+			<StackLayout class=" align-left error-container" *ngIf="password.errors && password.dirty">
+	            <Label 
+	            	*ngIf="password.errors.required"
+	            	class="error-msg" 
+	            	text="Password is required"></Label>
+	        </StackLayout>
+	        <!-- END OF PASSWORD -->
+
+	        <!-- CONFIRM PASSWORD -->
+			<TextField id="confirmpass" (textChange)="pass($event)" hint="Confirm Password" secure="true" [(ngModel)]="confirmationPassword" #confirmpass="ngModel" required></TextField>
+			<StackLayout orientation="horizontal" class="align-left error-container">
+				<StackLayout *ngIf="confirmpass.errors && confirmpass.dirty">
+		            <Label 
+		            	*ngIf="confirmpass.errors.required" 
+		            	class="error-msg" 
+		            	text="Confirm password is required"></Label>
+		        </StackLayout>
+		        <Label 
+		        	*ngIf="!isMatch"
+		        	class="error-msg align-left" 
+		        	text="Dont Match"></Label>
+			</StackLayout>
+			<!-- END OF CONFIRM PASSWORD -->
+
+			<Label 
+			class="font-medium footnote wrap-content text-center" 
+			width="80%"
+			(tap)="open('https://www.yudabands.org/terms')">
+				<FormattedString>
+					<Span text="By signing in you accept our "></Span>
+					<Span text="Terms & conditions." class="link-lbl"></Span>
+				</FormattedString>
+			</Label>
+
+			<Button 
+				class="signup-btn" 
+				text="Register" 
+				(tap)="signup()" 
+				[isEnabled]="fname.valid && lname.valid && email.valid && password.valid && confirmpass.valid && isMatch">
+			</Button> 
+
+			<Button class="signin-btn" (tap)="goBack()" text="Back"></Button> 
+		</StackLayout>
+	</StackLayout>
+</ScrollView>
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+ActionBar {
+	background-color: #fff;
+	height: 50;
+}
+	.back-btn { width: 25; transform: scaleX(-1); }
+	.actionbar-title {
+		font-size: 20;
+	}
+	.shipment-image {
+		background-color: #00b1ef;
+		width: 100%;
+		height: 200;
+	}
+		.img-avatar {
+			height: 130;
+			width: 230;
+		}
+	.detail-container {
+		margin: auto 20;
+	}
+		.item-status-lbl {
+			font-size: 20%;
+		}
+		.detail-lbl {
+			font-size: 17;
+		}
+		.done-btn {
+			background-color: #00b1ef;
+			margin-top: 20;
+		}

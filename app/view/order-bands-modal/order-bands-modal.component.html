@@ -1,0 +1,44 @@
+
+	<StackLayout class="page-container pt-30">
+		<StackLayout class="label-container mb-10">
+			<!-- <Label 
+				text="Ordering Bands" 
+				class="congrts-lbl align-left"></Label> -->
+			<Label 
+				text="Make your best guess! If you need additional bands, we can send more during your project." 
+				class="congrts-dscrptn-lbl wrap-content align-left font-medium"></Label>
+		</StackLayout>
+		<StackLayout class="label-container mt-20">
+			<Label 
+				text="Number of bands to order" 
+				class="wrap-content align-left tf-lbl font-medium"></Label>
+		</StackLayout>
+		<GridLayout 
+			columns="*,auto" 
+			class="dd-content">
+			<DropDown #dd
+	            [items]="numberOfBands"
+	            [(ngModel)]="selectedBand"
+	            (closed)="onBandsClose()"
+	            class="text-center font-medium"
+	        ></DropDown>
+	        <Label 
+	        	text="&#xf078;" 
+	        	textWrap="false" 
+	        	fontSize="15" 
+	        	color="#c6ebf7" 
+	        	col="0" 
+	        	class="font-awesome align-right text-right arrow-dwn m-10"></Label>
+	    </GridLayout>
+		
+		<Button 
+			text="Confirm" 
+			(tap)="confirm()" 
+			class="next-btn yb-btn mb-10"></Button>
+
+		<Button 
+			text="Skip for Now" 
+			(tap)="onClose()" 
+			width="85%"
+			class="bg-white c-black yb-btn"></Button>
+	</StackLayout>

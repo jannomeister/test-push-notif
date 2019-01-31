@@ -1,0 +1,80 @@
+.tabs-container {
+	/*width: 100%;*/
+}
+.tab-btn {
+	/*text-align: center;*/
+	width: 20%;
+	/*background-color: #fff;*/
+	/*z-index: 1;*/
+}
+/*.tab-btn-1 {
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	z-index: 1;
+}*/
+/*.tab-btn-2 {
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	z-index: -1;
+}*/
+/*.width {
+	text-align: center;
+	width: 20%;
+}*/
+.tab-btn1 {
+	/*text-align: center;*/
+	width: 20%;
+	/*background-color: #fff;*/
+}
+	.badge {
+		/*margin: 0;*/
+		/*padding: 0;*/
+		/*margin-top: 5;*/
+	}
+	.badge-active { background-color: #00a9ed }
+	.badge-inactive { background-color: transparent; }
+	.img-badge { margin-top: 1 }
+
+/*.icon { font-size: 20 }*/
+
+/*.has-project { color: #34C0EE; }*/
+
+/*.selected { background-color: #00adee; }*/
+
+	Image {
+		height: 20;
+		width: 20;
+		margin-top: 10;
+	}
+	Label {
+		font-size: 7%;
+		margin-top: 5;
+	}
+
+/*.settings {
+    background-color: #00adee;
+}*/
+/*.profile {
+    background-color: #00adee;
+}*/
+/*.start {
+    background-color: #00adee;
+}*/
+/*.project {
+    background-color: #00adee;
+}*/
+	.bw-5 {
+		border-color: #00adee;
+		border-width: 2;
+		border-radius: 3;
+	}
+	/*.lbl-highlighted {
+		padding: 3;
+	}*/
+/*.home {
+    background-color: #00adee;
+}*/

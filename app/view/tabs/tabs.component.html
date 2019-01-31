@@ -1,0 +1,51 @@
+
+<StackLayout row="1" orientation="horizontal">
+	<StackLayout id="homeTab" textWrap="true" class="tab-btn bg-white text-center" (tap)="goTo('/dashboard')">
+	        <Image [src]="tabs.home.image"></Image>
+	        <Label 
+	        	text="Home" 
+	        	[color]="tabs.home.color" 
+	        	class="uppercase font-medium"
+	        ></Label>
+	</StackLayout>
+	<StackLayout id="resourcesTab" textWrap="true" class="tab-btn bg-white text-center" (tap)="goTo('/resources')">
+			<Label height="5" width="5" backgroundColor="transparent" borderRadius="100" class="align-center badge"></Label>
+	        <Image [src]="tabs.resources.image" class="img-badge"></Image>
+	        <Label 
+	        	text="resources" 
+	        	[color]="tabs.resources.color" 
+	        	class="uppercase font-medium"
+	        ></Label>
+	</StackLayout>
+
+	<StackLayout id="projectTab" textWrap="true" class="tab-btn bg-white text-center" [ngClass]="{ 'bw-5': isProjectDone }" (tap)="checkProject()" >
+			<Label 
+				height="5" 
+				width="5" 
+				[ngClass]="{ 'bg-red r-100': userHasProject, 'badge-inactive': !userHasProject }" 
+				class="align-center badge"></Label>
+	        <Image [src]="tabs.project.image" class="img-badge"></Image>
+	        <Label 
+	        	text="Project" 
+	        	[color]="tabs.project.color" 
+	        	class="uppercase font-medium"
+	        ></Label>
+	</StackLayout>
+
+	<StackLayout id="profileTab" textWrap="true" class="tab-btn bg-white text-center" (tap)="goTo('/profile')">
+	        <Image [src]="tabs.profile.image"></Image>
+	        <Label 
+	        	text="Profile" 
+	        	[color]="tabs.profile.color" 
+	        	class="uppercase font-medium"
+	        ></Label>
+	</StackLayout>
+	<StackLayout id="settingsTab" textWrap="true" class="tab-btn1 bg-white text-center" (tap)="goTo('/settings')">
+	        <Image [src]="tabs.settings.image"></Image>
+	        <Label 
+	        	text="Settings" 
+	        	[color]="tabs.settings.color" 
+	        	class="uppercase font-medium"
+	        ></Label>
+	</StackLayout>
+</StackLayout>

@@ -1,0 +1,128 @@
+<actionbar [pageName]="'edit-profile'"></actionbar>
+<StackLayout>
+	<StackLayout *ngIf="!isInitialized">
+		<shimmer [type]="'profile'"></shimmer>
+	</StackLayout>
+
+	<ScrollView row="0">
+		<StackLayout *ngIf="isInitialized">
+			<StackLayout class="project-cover mp-0"></StackLayout>
+			<StackLayout class="user-image-container r-5">
+				<AbsoluteLayout class="align-center vertical-center">
+					<Image [src]="userImage" class="user-profile-img" height="130" stretch="fill"></Image>
+					<StackLayout *ngIf="!isUserImageEdited" 
+						class="icon-layout vertical-center" (tap)="changePicture()">
+						<Image src="~/assets/icon/camera-icon.png" class="camera-icon align-center"></Image>
+					</StackLayout>
+
+					<StackLayout *ngIf="isUserImageEdited" 
+						class="icon-layout vertical-center" (tap)="revert('user')">
+						<Image src="~/assets/icon/undo-icon.png" class="camera-icon align-center"></Image>
+					</StackLayout>
+				</AbsoluteLayout>
+			</StackLayout>
+			<StackLayout class="info-container">
+
+				<!-- FIRST NAME -->
+				<Label text="First Name" class="align-left mp-0 tf-lbl"></Label>
+				<TextField [(ngModel)]="user.firstName"></TextField>
+
+				<!-- LAST NAME -->
+				<Label text="Last Name" class="align-left mp-0 tf-lbl"></Label>
+				<TextField [(ngModel)]="user.lastName"></TextField>
+
+				<!-- BIRTH DATE -->
+				<!-- <Label text="Birthday" class="align-left mp-0 tf-lbl"></Label>
+
+				<GridLayout 
+					orientation="horizontal"
+					columns="*,*,*"
+					class="bday-container align-center"
+					height="70"
+					verticalAlignment="top">
+					<GridLayout 
+						col="0"
+						columns="*,auto" 
+						height="70"
+						class="dd-content bday-dd">
+						<DropDown #dd
+							[items]="months"
+			                [(ngModel)]="selectedMonth"
+		                  	(selectedIndexChanged)="onMonthchange($event)"
+		                	class="text-center"
+		                	backroundColor="#fff"
+		                	col="0"
+		                	id="DropDown"
+		                ></DropDown>
+		                 <Label text="&#xf0d7;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn font-black"></Label>
+				    </GridLayout>
+
+				    <GridLayout 
+				    	col="1"
+				    	columns="*,auto" 
+				    	class="dd-content bday-dd"
+				    	height="70">
+						<DropDown #dd
+							[items]="days"
+			                [(ngModel)]="selectedDay"
+		                  	(selectedIndexChanged)="onDaychange($event)"
+		                	class="text-center"
+		                	backroundColor="#fff"
+		                	col="0"
+		                	id="DropDown"
+		                ></DropDown>
+		                <Label text="&#xf0d7;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn font-black"></Label>
+				    </GridLayout>
+
+				    <GridLayout 
+				    	col="2"
+				    	columns="*,auto" 
+				    	class="dd-content bday-dd"
+				    	height="70">
+						<DropDown #dd
+							[items]="years"
+			                [(ngModel)]="selectedYear"
+		                  	(selectedIndexChanged)="onYearchange($event)"
+		                	class="text-center"
+		                	backroundColor="#fff"
+		                	col="0"
+		                	id="DropDown"
+		                ></DropDown>
+		                <Label text="&#xf0d7;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn font-black"></Label>
+				    </GridLayout>
+				</GridLayout> -->
+
+				<!-- ADDRESS -->
+				<!-- <Label text="Address" class="align-left mp-0 tf-lbl"></Label>
+				<TextField [(ngModel)]="user.address"></TextField> -->
+
+			    <!-- SCHOOL/UNIVERSITY NAME -->
+				<!-- <Label text="School, University" class="align-left mp-0 tf-lbl"></Label>
+				<TextField [(ngModel)]="user.schoolName"></TextField> -->
+
+				<!-- COMMUNITY ROLE -->
+				<!-- <Label text="Community role" class="align-left mp-0 tf-lbl"></Label>
+				<GridLayout columns="*,auto" class="dd-content">
+					<DropDown #dd
+						[items]="communityRoles"
+		                [(ngModel)]="selectedCommunityRole"
+	                  	(selectedIndexChanged)="onCommunityRolechange($event)"
+	                	class="text-center"
+	                	backroundColor="#fff"
+	                	col="0"
+	                	id="DropDown"
+	                ></DropDown>
+			        <Label text="&#xf0d7;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn font-black"></Label>
+			    </GridLayout> -->
+
+				<!-- AFFILIATION -->
+				<!-- <Label text="Grade, affiliation, work" class="capitalize align-left mp-0 tf-lbl"></Label>
+				<TextField [(ngModel)]="user.affiliation"></TextField>
+				 -->
+				<Button text="Save" class="save-btn yb-btn" (tap)="save()"></Button>
+				<Button text="Cancel" class="yb-btn font-black bg-white" (tap)="cancel()"></Button>
+
+			</StackLayout> 
+		</StackLayout>
+	</ScrollView>
+</StackLayout>

@@ -1,0 +1,76 @@
+.shipment-container { background: linear-gradient(to bottom right, #b809e4, #47a5f7); }
+	.shipment-lbl { font-size: 13%; }
+		.band-amount-tf { border-width: 0; background-color: rgba(0, 0, 0, .1); placeholder-color: white; }
+	.tab-container {  }
+		SegmentedBar{ selected-background-color: #00a1e3; selected-color:blue; color: black; font-size: 10; background-color: white; border-width: 0; border-color: transparent; }
+		.projectbtn { width: 23% }
+		.active-btn { border-bottom-width: 1; border-bottom-color: #00a1e3; }
+		.bwl-0 { border-left-width: 0 }
+		.tab-btn1 { font-size: 11%; border-color: #ffb63c; }
+		.tab-btn { font-size: 12%; border-color: #ffb63c; }
+	.user-personalinfo-container { height: 230; width: 100%; background-image: url('~/assets/icon/many-bands.jpg'); background-repeat: no-repeat; background-position: top; background-size: cover; }
+		.user-personalinfo-container GridLayout { height: 230; background-color: rgba(9, 170, 247, .9); }
+	.project-personalinfo-container { width: 100%; background-image: url('~/assets/icon/many-bands.jpg'); background-repeat: no-repeat; background-position: top; background-size: cover; }
+		.project-personalinfo-container GridLayout { height: 230; background-color: rgba(9, 170, 247, .9); }
+			.user-img { border-width: 3; border-color: white; }
+			.userfullname-lbl { font-size: 20%; }
+			.communityrole-lbl { font-size: 13%; }
+	.projectinfo-container {  }
+		.schoolname-lbl { font-size: 25%; }
+		.other-schoolinfo-lbl { font-size: 15%; }
+	.track-package-container { height: 60; width: 95%; padding-left: 20; }
+		.track-package-container .track-package-img { height: 70; width: 70; }
+		.track-package-lbl { font-size: 23% }	
+
+
+		.bands-sold-lbl1 { font-size: 80%; margin: 0; }
+		.bands-sold-lbl2 { font-size: 15%; margin: 0; }
+
+		.raised-money-lbl1 { font-size: 30% }
+		.raised-money-lbl2 { font-size: 15% }
+
+		.volunteers-lbl { font-size: 15% }
+
+		.update-btn { font-size: 15%; height: 40; width: 48%; border-width: 1; border-color: #ccc; }
+
+/* MY PROGRESS STYLE */
+.progress-container { background-color: #dcedff; }
+	.myprogress-lbl { font-size: 20% }
+		.progress-lbl { font-size: 15%; }	
+		.progress-icon { font-size: 17%; }	
+/* MY PROGRESS STYLE */
+
+
+/* MY STUDENT STYLE */
+.empty-student-container { background-color: #dcedff; }
+.student-container { width: 100% }
+	.mystudent-lbl { font-size: 20% }
+	.student-lbl { font-size: 15%; }
+	.student-name-lbl { font-size: 18% }	
+	.skype-btn { font-size: 13%; height: 40; width: 48%; border-width: 1; border-color: #ccc; }
+	.student-btn { font-size: 15%; height: 40; width: 48%; border-width: 1; border-color: #ccc; }
+	
+/* MY STUDENT STYLE */
+
+
+/* FINALIZATION STYLE */
+.finalization-container { background-color: #dcedff; }
+	.finalization-title-lbl { font-size: 20%; }
+		.finalization-lbl-1 { font-size: 15%; }
+		.finalization-lbl-2 { font-size: 18%; }
+		.report-btn { width: 90%; }
+/* FINALIZATION STYLE */
+
+
+	.support-title-lbl { font-size: 20%; }
+		.support-lbl { font-size: 15%; }
+
+		.pm-img { border-width: 3; border-color: white; margin-right: 10; }
+		.pm-info-container { padding-top: 20%; }
+			.pm-name-lbl { font-size: 17% }
+			.pm-description-lbl { font-size: 15%; }
+			.more-info-btn { width: 60%; border-width: 1; border-color: #ccc; }
+
+		.our-story-lbl { font-size: 20% }
+		.yd-small-logo { width: 40%; height: 50; }
+		.yudabands-info-lbl { font-size: 15%; padding-left: 10; padding-right: 10; }

@@ -1,0 +1,72 @@
+<actionbar [pageName]="'profile'"></actionbar>
+<GridLayout rows="*,60">
+	<StackLayout row="0" class="page">
+		<SegmentedBar 
+			class="m-5"
+			[items]="items" 
+			(selectedIndexChange)="onSelectedIndexChange($event)"></SegmentedBar>
+
+		<StackLayout *ngIf="isBusy">
+			<ActivityIndicator 
+				#activityIndicator 
+				[busy]="isBusy" 
+				width="100" height="100" 
+				class="activity-indicator"></ActivityIndicator>
+		</StackLayout>
+		
+		<GridLayout tkExampleTitle tkToggleNavButton>
+			<RadListView 
+				*ngIf="!isBusy"
+				#mediaList
+				height="800" 
+				[items]="medias" 
+				margin="0"
+				padding="0"
+				[filteringFunction]="myFilteringFunc">
+
+		        <ng-template let-item="item">
+		            <GridLayout (tap)="openMedia(item)" class="p-5">
+		            	<!-- images -->
+		            	<Image 
+		            		[visibility]="item.type === 'image' ? 'visible' : 'collapsed'"
+		                	stretch="aspectFill"
+		               		[src]="item.link"></Image>
+		               	<!-- image -->
+
+		               	<!-- video -->
+		               	<AbsoluteLayout 
+	               			[visibility]="item.type === 'video' ? 'visible' : 'collapsed'"
+	   						class="vertical-center align-center">
+
+	               			<Image 
+			                	width="100%" 
+			                	height="130"
+			                	stretch="aspectFill"
+			               		[src]="item.link"></Image>
+			               	<Label 
+			               		text="&#xf03d;"
+			               		class="video-icon font-awesome c-white m-5 align-right"></Label>
+
+			               	<!-- <GridLayout 
+			               		class="vertical-center align-center" 
+			               		width="100%"
+			               		height="140">
+				               	<Image 
+				                	width="40" 
+				                	height="40"
+				                	stretch="aspectFit"
+				               		src="~/assets/icon/play-light-icon.png"
+				               		class="vertical-center align-center"></Image>
+				            </GridLayout> -->
+	               		</AbsoluteLayout>
+	               		<!-- video -->
+
+		            </GridLayout>
+		        </ng-template>
+
+		        <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" ios:itemHeight="140" spanCount="3"></ListViewGridLayout>
+		    </RadListView>
+		</GridLayout>
+	</StackLayout>
+	<tabs [activeTab]="'resources'"></tabs>
+</GridLayout>

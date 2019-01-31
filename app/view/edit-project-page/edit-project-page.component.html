@@ -1,0 +1,118 @@
+
+<actionbar [pageName]="'edit-project'"></actionbar>
+
+<GridLayout rows="*,60">
+
+	<StackLayout *ngIf="!isInitialized">
+		<shimmer [type]="'project'"></shimmer>
+	</StackLayout>
+
+	<ScrollView row="0" *ngIf="isInitialized">
+		<StackLayout>
+			<AbsoluteLayout class="project-cover">
+				<Image [src]="studentCoverImage" class="project-cover-img" stretch="fill"></Image>
+
+				<!-- display if user is the project leader -->
+				<StackLayout
+					[visibility]="isUserProject ? 'visible' : 'collapsed'" 
+					class="vertical-center align-center change-container">
+					
+					<!-- <StackLayout *ngIf="!isProjectImageEdited" class="options vertical-center" 
+						(tap)="changeImage('project')">
+						<Label text="Change image" class="text-center font-white change-image-lbl mp-0"></Label>
+						<Image src="~/assets/icon/image-thumbnail.png" class="image-thumbnail-img align-center"></Image>
+					</StackLayout> -->
+
+					<StackLayout *ngIf="isProjectImageEdited" class="options vertical-center">
+						<Label text="Save" style="margin-bottom: 20" class="text-center font-white change-image-lbl mp-0" (tap)="save()"></Label>
+						<Label text="Cancel" class="text-center font-white change-image-lbl mp-0" (tap)="revert()"></Label>
+					</StackLayout>
+
+				</StackLayout>
+				<!-- display if user is the project leader -->
+			</AbsoluteLayout>
+
+			<StackLayout orientation="horizontal" class="project-header">
+				<AbsoluteLayout class="user-profile">
+					<AbsoluteLayout class="user-profileimg mp-0">
+						<Image [src]="user.imageUrl" class="user-profile-img" stretch="fill"></Image>
+					</AbsoluteLayout>
+				</AbsoluteLayout>
+				<StackLayout orientation="horizontal" class="column-2">
+					<StackLayout orientation="vertical" class="user-profile-lbl-container">
+						<Label [text]="user.getFullName()" class="align-left wrap-content user-profile-lbl1 capitalize font-black"></Label>
+						<Label text="project leader" class="align-left wrap-content user-profile-lbl2 capitalize font-black"></Label>
+					</StackLayout>
+					<Button text="save" class="save-btn uppercase" (tap)="update()"></Button>
+				</StackLayout>
+			</StackLayout>
+
+			<!-- display if user is the project leader -->
+			<StackLayout 
+				[visibility]="isUserProject ? 'visible' : 'collapsed'" 
+				orientation="horizontal" class="project-subheader">
+				<StackLayout class="tracting-service-btn">
+					<Image src="~/assets/resized/shipment-tracking.png" class="tracting-service-img"></Image>
+				</StackLayout>
+				<StackLayout orientation="horizontal" class="project-manager-info-btn align-left">
+					<Image [src]="project.manager.imageUrl" class="pm-info-img align-left"></Image>
+					<Label text="Project Manager Info" class="pm-info-lbl wrap-content align-left"></Label>
+				</StackLayout> 
+			</StackLayout>
+			
+
+			<StackLayout class="project-header-label">
+				<Label [text]="project.schoolName" class="header-lbl align-left font-black capitalize"></Label>
+				<Label [text]="project.getDateDuration()" textWrap="true" class="subheader-lbl align-left capitalize"></Label>
+				<Label [text]="project.schoolAddress" textWrap="true" class="subheader-lbl align-left capitalize"></Label>
+			</StackLayout>
+
+			<StackLayout class="thumbnail-container align-left">
+
+				<Label text="Yuda Bands Sold" class="tf-1-lbl align-left font-black mp-0"></Label>
+				<StackLayout orientation="horizontal" class=" mb-10">
+					<TextField class="tf-1 align-left font-black mp-0" [(ngModel)]="project.bandsSold"></TextField>
+				</StackLayout>
+				<!-- <Label text="Raised" class="tf-2-lbl align-left font-black mp-0"></Label>
+				<StackLayout orientation="horizontal" class="">
+					<TextField class="tf-2 align-left" [(ngModel)]="project.raisedMoney" icon="assets/icon/dollar-sign-sm.png"></TextField>
+				</StackLayout> -->
+			</StackLayout>
+
+			<StackLayout orientation="vertical" class="scholar-content">
+
+				<!-- display if user is the project leader -->
+				<StackLayout [visibility]="isUserProject ? 'visible' : 'collapsed'"  class="mp-0">
+					<Label text="Our scholar" class="our-scholar-lbl uppercase align-left font-gray"></Label>
+					<StackLayout orientation="horizontal" class="scholar-student-header">
+						<Image [src]="student.imageUrl" class="scholar-student-img"></Image>
+						<StackLayout class="scholar-student-name-grade">
+							<Label [text]="student.getFullName()" class="scholar-student-name font-black wrap-content align-left mp-0"></Label>
+							<Label [text]="student.getEmail()" class="scholar-student-grade font-gray align-left mp-0"></Label>
+						</StackLayout>
+					</StackLayout>
+				</StackLayout>
+				<!-- display if user is the project leader -->
+
+				<StackLayout class="scholar-description">
+					<Label text="Project Description:" class="project-dscrptn-label font-gray font-medium align-left text-left mp-0"></Label>
+					<TextView [text]="project.projectDescription" [(ngModel)]="project.projectDescription" class="scholar-student-dscrptn wrap-content"></TextView>
+				</StackLayout>
+			</StackLayout>
+			<!-- <StackLayout class="mp-0 video-container">
+				<StackLayout class="mp-0 video-subcontainer" (tap)="updateVideo()">
+					<Label text="Change video" class="video-lbl font-white text-center mp-0"></Label>
+					<Image src="~/assets/icon/video-player.png" class="video-player-icon"></Image>
+				</StackLayout>
+			</StackLayout>
+			<Label class="align-left video-filename-lbl wrap-content">
+				<FormattedString>
+					<Span text="video file: " class="uppercase"></Span>
+					<Span *ngIf="project.videoLink" [text]="project.videoLink" class="link-lbl lowercase"></Span>
+					<Span *ngIf="!project.videoLink" text="Youtube video link not found" class="link-lbl lowercase"></Span>
+				</FormattedString>
+			</Label> -->
+		</StackLayout>
+	</ScrollView>
+	<tabs [activeTab]="'project'"></tabs>
+</GridLayout>

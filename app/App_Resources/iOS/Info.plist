@@ -1,0 +1,84 @@
+<?xml version="4.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="4.0">
+<dict>
+	<key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb2079069768972058</string>
+                <string>twitterkit-SukoTXXwhFk94yj3mKreH4ueQ</string>
+            </array>
+        </dict>
+    </array>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Allow access gallery so you can save photos for your marketing campaign.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Allow access gallery so you can save photos for your marketing campaign.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Allow access camera so you can take a photo for your profile</string>
+    <key>NSAppTransportSecurity</key>
+	<dict>
+	    <key>NSAllowsArbitraryLoads</key>
+	    <false/>
+	</dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Yuda Bands</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Yuda Bands</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+  	<key>UseExternalPushProvider</key>
+	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	    <string>twitter</string>
+	    <string>twitterauth</string>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	   <string>tel</string>
+	   <string>telprompt</string>
+	</array>
+</dict>
+</plist>

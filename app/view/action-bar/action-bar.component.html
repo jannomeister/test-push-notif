@@ -1,0 +1,91 @@
+<ActionBar title="">
+	<NavigationButton [visibility]="isBackButtonVisible? 'visible' : 'collapsed' "></NavigationButton>
+
+	<StackLayout 
+		*ngIf="isSearchBarVisible"
+		orientation="horizontal" 
+		ios:horizontalAlignment="left" 
+		android:horizontalAlignment="left" 
+		class="align-left bw-1 mp-0">
+
+		<Button 
+			id="mockSearch" 
+			[ngClass]="{ 'search-btn-with-backbtn': isBackButtonVisible, 'search-btn': !isBackButtonVisible }" 
+			class="search-btn-with-backbtn" textWrap="true" 
+			(tap)="goToSearch()">
+            <FormattedString>
+                <Span text="&#xf002; " class="font-awesome text-left"></Span>
+                <Span text="Search"></Span>
+            </FormattedString>
+        </Button>
+
+		<!-- <Button 
+			*ngIf="!isBackButtonVisible"
+			id="mockSearch" 
+			class="search-btn" textWrap="true" 
+			(tap)="goToSearch()">
+            <FormattedString>
+                <Span text="&#xf002; " class="font-awesome text-left"></Span>
+                <Span text="Search"></Span>
+            </FormattedString>
+        </Button> -->
+
+        <AbsoluteLayout *ngIf="isNotifButtonVisible" height="auto" class="bw-1">
+			<Label 
+				left="6" 
+				height="5" 
+				width="5" 
+				borderRadius="100" 
+				class="align-center vertical-top bw-1"
+				[ngClass]="{ 'bg-red': isBadgeVisible, 'bg-transparent': !isBadgeVisible }"></Label>
+			<Button 
+				top="8" 
+				id="notifButton" 
+				class="font-awesome sb-opt mp-0" 
+				textWrap="true" 
+				[color]="buttonColor"
+				text="&#xf0f3;" 
+				(tap)="onTap()"></Button>
+		</AbsoluteLayout>
+
+		<AbsoluteLayout 
+			*ngIf="!isNotifButtonVisible"
+			(tap)="logout()">
+			<Button 
+				top="8" 
+				left="5" 
+				width="auto" 
+				class="font-awesome sb-opt text-left align-left" 
+				textWrap="true" 
+				[color]="buttonColor"
+				text="&#xf011;" 
+				(tap)="logout()"></Button>
+		</AbsoluteLayout>
+	</StackLayout>
+
+
+	<GridLayout 
+		*ngIf="!isSearchBarVisible"
+		orientation="horizontal" 
+		ios:horizontalAlignment="center" 
+		android:horizontalAlignment="center">
+		<Image 
+			src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png" 
+			class="img-logo align-center" 
+			style="vertical-align: center"></Image>
+	</GridLayout>
+
+	<StackLayout 
+		*ngIf="pageName === 'search'"
+		orientation="horizontal"
+		ios:horizontalAlignment="left"
+		android:horizontalAlignment="left">
+		<SearchBar
+			id="searchbar" 
+			hint="Search something..." 
+			text="" 
+			(loaded)="searchBarLoaded($event)"
+			(submit)="onSearch($event)"
+		></SearchBar>
+	</StackLayout>
+</ActionBar>

@@ -1,0 +1,37 @@
+<StackLayout class="bg-white">
+	<StackLayout 
+		class="bg-white"
+		orientation="horizontal"
+		ios:horizontalAlignment="left"
+		android:horizontalAlignment="left">
+		<SearchBar
+			id="searchbar" 
+			hint="Type address.." 
+			(submit)="search($event)"
+		></SearchBar>
+		<Image src="~/assets/icon/close-icon.png" class="close-icon" (tap)="onClose()"></Image>
+	</StackLayout>
+	<StackLayout class="label-divider p-10">
+		<Label text="Select" class="footnote uppercase vertical-center"></Label>
+	</StackLayout>
+   	<StackLayout orientation="vertical">
+   		<!-- IF STILL BUSY -->
+   		<ActivityIndicator #activityIndicator [busy]="isBusy" *ngIf="isBusy" class="activity-indicator"></ActivityIndicator>
+
+	   	<ListView 
+	   		*ngIf="!isBusy"
+	   		class="list-group"
+	   		[items]="address"
+	   		(loadMoreItems)="loadMoreItems()">
+			<ng-template let-list="item" let-i="index">
+				<StackLayout orientation="horizontal" (tap)="selectAddress(list)">
+					<Label text="" fontWeight="Bold" class="address-lbl wrap-content uppercase m-5">
+						<FormattedString>
+							<Span [text]="list.formattedName" fontWeight="Bold"></Span>
+						</FormattedString>
+					</Label>
+				</StackLayout>
+			</ng-template>
+		</ListView>
+	</StackLayout>
+</StackLayout>

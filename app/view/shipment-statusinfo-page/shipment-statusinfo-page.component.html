@@ -1,0 +1,106 @@
+<ScrollView>
+	<StackLayout class="bg-yb">
+		<ActivityIndicator 
+			[busy]="isLoading" 
+			[visibility]="isLoading ? 'visible' : 'collapsed'"
+			width="100" 
+			height="100" 
+			class="activity-indicator"></ActivityIndicator>
+
+		<StackLayout [visibility]="!isLoading ? 'visible' : 'collapsed'">
+			<StackLayout class="shipment-image vertical-center">
+				<StackLayout>
+					<Image 
+						[visibility]="shipment.shipmentId ? 'visible' : 'collapsed'"
+						class="img-avatar" 
+						src="~/assets/icon/delivery-truck.png"></Image>
+
+					<Image 
+						[visibility]="!shipment.shipmentId ? 'visible' : 'collapsed'"
+						src="~/assets/icon/box.png" 
+						class="img-avatar mtb-20"></Image>
+				</StackLayout>
+			</StackLayout>
+
+			<StackLayout class="detail-container align-center">
+
+				<Label
+					[visibility]="shipment.shipmentId ? 'visible' : 'collapsed'" 
+					text="Your item is on the way" 
+					class="font-bold item-status-lbl align-center mtb-10 mb-20"></Label>
+
+				<Label
+					[visibility]="!shipment.shipmentId ? 'visible' : 'collapsed'"
+					textWrap="true" 
+					text="Sorry, it seems that you don't have an active shipment yet." 
+					class="font-bold item-status-lbl align-center mtb-10 mb-20"></Label>
+
+				<StackLayout [visibility]="shipment.shipmentId ? 'visible' : 'collapsed'">
+					<Label 
+						text="Track No: " 
+						class="wrap-content font-medium detail-lbl align-left font-gray"></Label>
+					<Label 
+						[text]="shipment.trackingNumber" 
+						class="wrap-content font-medium detail-lbl align-left mb-10"></Label>
+
+					<Label 
+						text="Sender: " 
+						class="wrap-content font-medium detail-lbl align-left font-gray"></Label>
+					<Label 
+						[text]="shipment.senderName" 
+						class="capitalize wrap-content font-medium detail-lbl align-left mb-10"></Label>
+					
+					<Label 
+						text="Receiver: " 
+						class="wrap-content font-medium detail-lbl align-left font-gray"></Label>
+					<Label 
+						[text]="shipment.receiverName" 
+						class="capitalize wrap-content font-medium detail-lbl align-left mb-10"></Label>
+				
+				
+					<Label 
+						text="Destination address: " 
+						class="wrap-content font-medium detail-lbl align-left font-gray"></Label>
+					<Label 
+						[text]="shipment.schoolAddress" 
+						class="uppercase wrap-content font-medium detail-lbl align-left mb-10"></Label>
+				
+				
+					<Label 
+						text="Current address: " 
+						class="wrap-content font-medium detail-lbl align-left font-gray"></Label>
+					<Label 
+						[text]="shipment.currentAddress" 
+						class="wrap-content font-medium detail-lbl align-left mb-10"></Label>
+				
+				
+					<Label 
+						text="Arrival date: " 
+						class="wrap-content font-medium detail-lbl align-left font-gray"></Label>
+					<Label 
+						[text]="shipment.arrivalDate" 
+						class="wrap-content font-medium detail-lbl align-left mb-10"></Label>
+				
+				
+					<Label 
+						text="Status: " 
+						class="wrap-content font-medium detail-lbl align-left font-gray"></Label>
+					<Label 
+						[text]="shipment.status" 
+						class="wrap-content font-medium detail-lbl align-left mb-10"></Label>
+					
+				</StackLayout>
+
+				<Button
+					[visibility]="shipment.shipmentId ? 'visible' : 'collapsed'"
+					(tap)="openProgress()"
+					text="View Progress" 
+					class="yb-btn done-btn font-white mb-10"></Button>
+				<Button
+					(tap)="close()"
+					text="Close" 
+					class="yb-btn bg-white font-black"></Button>
+			</StackLayout>
+		</StackLayout>
+	</StackLayout>
+</ScrollView>

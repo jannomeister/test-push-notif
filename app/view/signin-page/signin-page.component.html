@@ -1,0 +1,82 @@
+
+	<GridLayout rows="9*,*" columns="*" class="signin-layout" >
+		<ScrollView>
+			<StackLayout row="0" column="0" class="signin-layout" orientation="vertical">
+				<Label class="signin-title align-center" text="Sign In"></Label>
+				<StackLayout>
+					<Image class="align-center yd-logo" src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png"></Image>
+				</StackLayout>
+
+				<!-- EMAIL ADDRESS -->
+				<TextField 
+					id="email" 
+					hint="E-mail" 
+					keyboardType="email" 
+					[(ngModel)]="user.email" 
+					#email="ngModel" 
+					required 
+					email></TextField>
+
+				<StackLayout 
+					*ngIf="email.errors && email.dirty"
+					orientation="horizontal" 
+					class="align-left error-container mb-10">
+		            <Label 
+		            	*ngIf="email.errors.required"
+		            	class="error-msg raleway-light mp-0" 
+		            	text="Email is required."></Label>
+		            <Label 
+		            	*ngIf="email.errors.email" 
+		            	class="error-msg raleway-light mp-0"
+		            	text="Invalid email"></Label>
+		        </StackLayout>
+		        <!-- END OF EMAIL ADDRESS -->
+
+		        <!-- PASSWORD -->
+				<TextField 
+					id="pass" 
+					hint="Password" 
+					secure="true" 
+					[(ngModel)]="user.password" 
+					#password="ngModel" 
+					required></TextField>
+
+		        <StackLayout
+		        	*ngIf="password.errors && (password.dirty || password.touched)"
+		        	orientation="horizontal" 
+		        	class="align-left error-container mb-10">
+		            <Label 
+		            	[visibility]="password.errors.required ? 'visible' : 'collapsed'"
+		            	class="error-msg raleway-light mp-0" 
+		            	text="Password is required"></Label>
+		        </StackLayout>
+		        <!-- END OF PASSWORD -->
+
+
+				<Button 
+					class="signin-btn font-white capitalize mb-20" 
+					text="Sign In" (tap)="signIn()" [isEnabled]="email.valid && password.valid">
+				</Button>
+
+				<Label class="footnote mtb-5 font-medium font-black" text="Back" (tap)="gotoHome()"></Label> 
+				<Label class="footnote m-5 font-medium font-black" text="Forgot password?" (tap)="forgetPass()"></Label> 
+
+				<Label 
+					class="font-medium footnote wrap-content text-center mtb-5 font-black" 
+					width="80%"
+					(tap)="open('https://www.yudabands.org/terms')">
+					<FormattedString>
+						<Span text="By signing in you accept our "></Span>
+						<Span text="Terms & conditions." class="link-lbl"></Span>
+					</FormattedString>
+				</Label>
+			</StackLayout>
+		</ScrollView>
+		<Label 
+			[nsRouterLink]="['/signup']" 
+			row="1" 
+			column="0" 
+			verticalAlignment="bottom" 
+			class="footer font-black" 
+			text="Create a new account" ></Label> 
+	</GridLayout>

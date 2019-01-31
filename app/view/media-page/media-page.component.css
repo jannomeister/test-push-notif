@@ -1,0 +1,18 @@
+.action-bar {
+	height: 50;
+	width: 100%;
+	padding: 5;
+}
+	.close-icon {
+		height: 25;
+		width: 25;
+		margin-left: 10;
+	}
+.page { background-color: #fafafc; }
+	.lbl-1 { font-size: 23%; }
+	/*WrapLayout { padding: 5; }
+		.image-container { margin: 5; }*/
+		.image-container { border-width: 1; border-color: #fff }
+		.description-lbl { font-size: 10; }
+		.icon-lbl { font-size: 30 }
+		.video-icon { font-size: 20% }

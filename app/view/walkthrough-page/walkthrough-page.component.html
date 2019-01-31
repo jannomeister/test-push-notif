@@ -1,0 +1,42 @@
+<StackLayout class="page">
+	<GridLayout columns="*,10" class="modal-action-bar">
+		<Image 
+			src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png" 
+			width="60%"
+			class="img-logo align-center mtb-10"></Image>
+			
+		<Image 
+			column="1" 
+			src="~/assets/icon/close-icon.png" 
+			class="close-icon align-right" 
+			(tap)="onClose()"></Image>
+	</GridLayout>
+	<ScrollView>
+		<StackLayout class="page-container">
+			<Label 
+				class="capitalize font-bold align-center header"
+				fontSize="25"
+				textWrap="true"
+				[text]="data.title" ></Label>
+
+			<Label 
+				class="wrap-content align-center mp-0 subheader-title"
+				fontSize="15"
+				lineHeight="4"
+				[text]="data.description">	
+			</Label>
+
+			<StackLayout *ngFor="let v of data.videos" marginTop="10" marginBottom="10">
+				<YoutubePlayer 
+					#player
+					id="player" 
+					apiKey="AIzaSyA3t0ySodjNpoqPTAGz-Ke7-vCVhawWyVM" 
+					src="{{v}}"
+					height="200" 
+					width="100%"
+				></YoutubePlayer>
+			</StackLayout>
+
+		</StackLayout>
+	</ScrollView>
+</StackLayout>

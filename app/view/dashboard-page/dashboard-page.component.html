@@ -1,0 +1,124 @@
+<actionbar [pageName]="'home'"></actionbar>
+
+<GridLayout rows="*,60">
+	
+	<ListView 
+		items="111" 
+		margin="0" 
+		style="separator-color: transparent;" 
+		*ngIf="!isInitialized">
+		<ng-template let-item="item">
+			<StackLayout row="0" class="list-card-border">
+				<shimmer [type]="'feed'"></shimmer>
+			</StackLayout>
+		</ng-template>
+	</ListView>
+
+	<StackLayout 
+		row="0" 
+		orientation="vertical" 
+		*ngIf="isInitialized && isEmpty" 
+		class="vertical-center">
+		<Image 
+			src="~/assets/icon/not_found.png" 
+			height="200" 
+			width="70%"></Image>
+	</StackLayout>
+
+	<GridLayout 
+		row="0" 
+		orientation="vertical" 
+		*ngIf="isInitialized && !isEmpty">
+		<PullToRefresh (refresh)="refreshList($event)">
+			<ListView 
+				[items]="posts" 
+				(loadMoreItems)="loadMoreItems()" 
+				margin="0" 
+				style="separator-color: transparent;">
+				<ng-template let-post="item" let-i="index">
+					<StackLayout 
+						orientation="vertical" 
+						class="list-card vertical-center list-card-border bg-white">
+
+						<!-- HEADER -->
+				        <StackLayout 
+				        	orientation="horizontal" 
+				        	class="p-5 vertical-center">				
+				        	<Image 
+				        		[src]="post.userId.imageUrl" 
+				        		loadMode="async" 
+				        		stretch="aspectFit" 
+				        		class="img-avatar m-5"></Image>
+				        	<StackLayout 
+				        		class="p-5"
+				        		height="50">
+				        		<Label 
+				        			[text]="post.userId.name" 
+				        			class="username capitalize font-black font-medium align-left"></Label>
+				        		<Label class="project-leader-lbl capitalize font-medium align-left">
+				        				<FormattedString>
+				        					<Span text="Project Leader" class="font-blue"></Span>
+				        					<Span text=" • " class="username font-gray"></Span>
+				        					<Span [text]="post.datetimeCreated | amTimeAgo" class="font-gray"></Span>
+				        				</FormattedString>
+				        			</Label>
+					        	<!-- <Label 
+					        		row="1" 
+					        		[text]="post.datetimeCreated | amTimeAgo" 
+					        		class="datetime font-medium font-gray align-left vertical-top"></Label> -->
+				        	</StackLayout>
+				    	</StackLayout>
+
+				    	<!-- END OF HEADER -->
+
+				    	<!-- PROJECT IMAGE -->
+				        <StackLayout 
+				        	orientation="vertical" 
+				        	class="bg-gray" 
+				        	(tap)="seePost(post.projectId)">
+				        	<GridLayout 
+				        		[backgroundImage]="post.imageUrl" 
+				        		class="student-cover-img vertical-center"
+				        		loadMode="async" ></GridLayout>
+				        </StackLayout>
+				        <!-- END OF PROJECT IMAGE -->
+
+				        <!-- FOOTER -->
+				        <GridLayout 
+				        	columns="8*,*"
+				        	class="list-card-footer vertical-center m-0"
+				        	(tap)="seePost(post.projectId)">
+							<StackLayout 
+								col="0"
+							   	row="0" 
+							   	rowSpan="2"
+							   	orientation="vertical" 
+							   	class="label-content">
+							   <Label 
+									[text]="getCaption(post.schoolName, post.state)" 
+									class="img-label wrap-content capitalize mp-0 align-left font-bold"></Label>
+								<Label 
+							   		class="img-descrpnt font-medium wrap-content mp-0 align-left">
+									<FormattedString>
+					            		<Span text="Project date: "></Span>
+					                	<Span [text]="formatDate(post.dateStart)"></Span>
+					                </FormattedString>
+								</Label>
+							</StackLayout>
+							<StackLayout 
+								col="1" 
+								row="1" 
+								class="vertical-center align-right mp-0">
+								<Image 
+									src="~/assets/icon/arrow-right-icon.png" 
+									class="footer-icon-arrow mp-0 vertical-center"></Image>
+							</StackLayout>
+				        </GridLayout>
+				        <!-- END OF FOOTER -->
+				    </StackLayout>
+				</ng-template>
+			</ListView>
+		</PullToRefresh>
+	</GridLayout>
+	<tabs [activeTab]="'home'"></tabs>
+</GridLayout>

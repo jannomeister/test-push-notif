@@ -1,0 +1,59 @@
+<Shimmer enabled="true">
+	<StackLayout style="padding: 10; margin-bottom: 40;" *ngIf="type === 'feed'">
+		<StackLayout orientation="horizontal">
+			<Label text="" style="height: 50; width: 50; background-color: #dddddd; margin-bottom: 20; margin-right: 10;"></Label>
+			<StackLayout style="padding-top: 10; padding-bottom: 10">
+				<Label style="height: 7; width: 60%; background-color: #dddddd; margin-bottom: 5; horizontal-align: left; "></Label>
+        		<Label style="height: 7; width: 45%; background-color: #dddddd; margin-bottom: 5; horizontal-align: left; "></Label>
+			</StackLayout>
+		</StackLayout> 
+
+        <StackLayout>
+        	<Label style="height: 8; width: 80%; background-color: #dddddd; margin-bottom: 15; horizontal-align: left;"></Label>
+        	<Label style="height: 8; width: 95%; background-color: #dddddd; margin-bottom: 15; horizontal-align: left;"></Label>
+        	<Label style="height: 8; width: 65%; background-color: #dddddd; margin-bottom: 15; horizontal-align: left;"></Label>  
+        </StackLayout> 
+	</StackLayout> 
+
+	<StackLayout *ngIf="type === 'profile'">
+		<StackLayout>
+			<Label style="height: 120; width: 120; background-color: #dddddd; margin-top: 50;"></Label>
+		</StackLayout>
+
+		<StackLayout style="padding-top: 15; padding-left: 10;">
+			<Label style="height: 7; width: 70%; background-color: #dddddd; margin-bottom: 5; horizontal-align: left;"></Label>
+			<Label style="height: 7; width: 40%; background-color: #dddddd; margin-bottom: 5; horizontal-align: left;"></Label>
+			<Label style="height: 7; width: 30%; background-color: #dddddd; margin-bottom: 5; horizontal-align: left;"></Label>
+		</StackLayout>
+
+		<StackLayout style="padding-top: 15; padding-left: 10;">
+			<Label style="height: 7; width: 90%; background-color: #dddddd; margin-bottom: 5; horizontal-align: left;"></Label>
+			<Label style="height: 7; width: 70%; background-color: #dddddd; margin-bottom: 5; horizontal-align: left;"></Label>
+			<Label style="height: 7; width: 50%; background-color: #dddddd; margin-bottom: 5; horizontal-align: left;"></Label>
+		</StackLayout>
+	</StackLayout> 
+	
+	<StackLayout *ngIf="type === 'project'">
+		<StackLayout>
+			<Label style="height: 190; width: 100%; background-color: #ddd;" class="mp-0"></Label>
+		</StackLayout>
+
+		<StackLayout style="padding-top: 15; padding-left: 10;">
+			<Label style="height: 7; width: 70%; background-color: #ddd; margin-bottom: 5; horizontal-align: left;"></Label>
+			<Label style="height: 7; width: 40%; background-color: #ddd; margin-bottom: 5; horizontal-align: left;"></Label>
+			<Label style="height: 7; width: 30%; background-color: #ddd; margin-bottom: 5; horizontal-align: left;"></Label>
+		</StackLayout>
+
+		<StackLayout style="padding-top: 15; padding-left: 10;">
+			<Label style="height: 7; width: 90%; background-color: #ddd; margin-bottom: 5; horizontal-align: left;"></Label>
+			<Label style="height: 7; width: 70%; background-color: #ddd; margin-bottom: 5; horizontal-align: left;"></Label>
+			<Label style="height: 7; width: 50%; background-color: #ddd; margin-bottom: 5; horizontal-align: left;"></Label>
+		</StackLayout>
+	</StackLayout> 
+
+
+	<StackLayout orientation="horizontal" *ngIf="type === 'settings'">
+		<Label width="30" height="30" borderRadius="100" backgroundColor="#dddddd"></Label>
+		<Label width="60%" height="10" backgroundColor="#dddddd"></Label>
+	</StackLayout>
+</Shimmer>

@@ -1,0 +1,16 @@
+<StackLayout>
+	<GridLayout columns="*,10" class="modal-action-bar">
+		<Label column="0" text="Conventions" class="title-action-bar text-center"></Label>
+		<Image column="1" src="~/assets/icon/close-icon.png" class="close-icon align-right" (tap)="onClose()"></Image>
+	</GridLayout>
+	<ListView [items]="conventions" 
+		(itemTap)="onItemTap($event)" 
+		(loadMoreItems)="loadMoreItems()"
+		class="list-group">
+	    <ng-template let-convention="item" let-i="index" let-odd="odd" let-even="even">
+	        <GridLayout class="list-group-item">
+	            <Label [text]="convention.name" class="wrap-content align-left"></Label>
+	        </GridLayout>
+	    </ng-template>
+	</ListView>
+</StackLayout>

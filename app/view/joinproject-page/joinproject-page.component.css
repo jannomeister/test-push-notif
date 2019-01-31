@@ -1,0 +1,40 @@
+
+	.modal-action-bar {
+		width: 100%;
+		height: 50;
+	}
+		.title-action-bar {
+			font-size: 20;
+
+		}
+		.close-icon {
+			width: 23;
+			height: 23;
+		}
+	.page-container {
+		margin: 10 20;
+	}
+		.page-title {
+			font-size: 25;
+			font-weight: 700;
+			width: 80%;
+		}
+		TextView {
+			background-color: white;
+			border-width: 1;
+			border-radius: 5;
+			border-color: white;
+			padding: 15;
+			placehoder-color: #cdcdcd;
+			color: #7c7b7c;
+			font-weight: 100;
+			height: 200;
+			width: 100%;
+			margin: 5 0;
+		}
+		.done-btn {
+			background-color: #00a9ec;
+			font-weight: 500;
+			font-size: 20;
+			margin: 10 0;
+		}

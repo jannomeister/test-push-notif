@@ -1,0 +1,83 @@
+
+<actionbar [pageName]="'settings'"></actionbar>
+<GridLayout rows="*,60">
+	<ScrollView row="0">
+		<StackLayout orientation="vertical" class="list-container">
+			<Label text="Profile" marginTop="5" class="footnote label-divider align-left"></Label>
+
+			<!-- EDIT PROFILE INFO -->
+			<shimmer [type]="'settings'" *ngIf="!isInitialized"></shimmer>
+			<StackLayout 
+				*ngIf="isInitialized"
+				orientation="horizontal" 
+				class="list-item"
+				(tap)="editProfile()">
+				<Image src="~/assets/icon/camera.png" class="list-icon"></Image>
+				<Label text="Edit Profile Info" class="list-lbl"></Label>
+			</StackLayout>
+
+			<!-- CHANGE PASSWORD -->
+			<shimmer [type]="'settings'" *ngIf="!isInitialized"></shimmer>
+			<StackLayout 
+				*ngIf="isInitialized"
+				orientation="horizontal" 
+				class="list-item" 
+				(tap)="changePassword()">
+				<Image src="~/assets/icon/lock.jpg" class="list-icon"></Image>
+				<Label text="Change Password" class="list-lbl"></Label>
+			</StackLayout>
+
+			<!-- PUSH NOTIFICATION -->
+			<shimmer [type]="'settings'" *ngIf="!isUserSettingsInitialized"></shimmer>
+			<StackLayout 
+				*ngIf="isUserSettingsInitialized"
+				orientation="horizontal" 
+				class="list-item">
+				<Label text="Push Notification" class="list-lbl1"></Label>
+				<Switch class="m-15" [checked]="notificationIsAllowed" (checkedChange)="checkIsChange($event)"></Switch>
+			</StackLayout>
+
+			<Label text="Account Management" class="footnote label-divider align-left"></Label>
+
+			<!-- FACEBOOK CONNECT -->
+			<shimmer [type]="'settings'" *ngIf="!isAccountsInitialized"></shimmer>
+			<StackLayout 
+				*ngIf="isAccountsInitialized"
+				orientation="horizontal" 
+				class="list-item" 
+				(tap)="connect('facebook')">
+				<Image src="~/assets/icon/facebook.png" class="list-icon"></Image>
+				<Label *ngIf="!hasFacebookLinkedAccount" text="Facebook" class="list-lbl"></Label>
+				<Label *ngIf="hasFacebookLinkedAccount" [text]="facebookName" class="list-lbl"></Label>
+			</StackLayout>
+
+			<!-- TWITTER CONNECT -->
+			<<!-- shimmer [type]="'settings'" *ngIf="!isAccountsInitialized"></shimmer>
+			<StackLayout 
+				*ngIf="isAccountsInitialized"
+				orientation="horizontal" 
+				class="list-item" 
+				(tap)="connect('twitter')">
+				<Image src="~/assets/icon/twitter-icon.jpg" class="list-icon"></Image>
+				<Label *ngIf="!hasTwitterLinkedAccount" text="Twitter" class="list-lbl"></Label>
+				<Label *ngIf="hasTwitterLinkedAccount" [text]="twitterName" class="list-lbl"></Label>
+			</StackLayout> -->
+
+			<Label text="Support" class="footnote label-divider align-left"></Label>
+
+			<!-- FAQ -->
+			<shimmer [type]="'settings'" *ngIf="!isInitialized"></shimmer>
+			<StackLayout 
+				*ngIf="isInitialized"
+				orientation="horizontal" 
+				class="list-item" 
+				(tap)="openUrl()">
+				<Label text="Faq" class="list-lbl uppercase"></Label>
+			</StackLayout>
+
+			<!-- <Button text="Logout" class="logout-btn yb-btn" (tap)="logout()"></Button> -->
+		</StackLayout>
+	</ScrollView>
+	<tabs [activeTab]="'settings'"></tabs>
+</GridLayout>
+

@@ -1,0 +1,53 @@
+.profile-cover {
+	background-color: #00aeed;
+	height: 200;
+	/*text-align: center*/
+}
+	.user-image-container {
+		width: 130;
+		height: 130;
+		margin-top: -90;
+		background-color: #fff;
+		border-width: 3;
+		border-color: #fff;
+	}
+		.user-image {
+			width: 100%;
+			height: 130;
+			border-color: #fff;
+		}
+	.user-label {
+			width: 100%;
+			margin-right: -80;
+		}
+			.user-fullname,
+			.user-email {
+				color: #fff;
+				margin: 0;
+				horizontal-align: center;
+			}
+			.user-fullname {
+				font-weight: 600;
+				font-size: 30;
+				margin: 20 0 -1 0;
+				/*text-transform: capitalize;*/
+			}
+			.user-email {
+				font-weight: 100;
+				font-size: 15;
+			}
+	.pm-lbl {
+		font-size: 15;
+	}
+	.pm-info-container {
+		height: auto;
+		width: 70%;
+	}
+		.img-icon {
+			height: 20;
+			width: 20;
+			margin: 10;
+		}
+		.pm-info-details {
+			font-size: 14;
+		}

@@ -1,0 +1,44 @@
+ActionBar {
+	background-color: #fff;
+	height: 50;
+}
+	.backbtn {
+		margin: 0;
+		transform: scaleX(-1);
+		height: 25;
+		width: 25;
+	}
+	.actionbar-title {
+		font-size: 20;
+	}
+	.container {
+		margin-top: 20;
+	}
+		.page-title {
+			font-size: 20;
+		}
+		.tf-container {
+			margin: auto 20;
+		}
+			TextField {
+				background-color: #f3f4f6;
+				border-radius: 5;
+				font-size: 20;
+				padding: 5;
+				border-color: transparent;
+				height: 70;
+				margin-bottom: 10;
+			}
+			.tf-1 {
+				width: 80%;
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0
+				padding-right: 0;
+				padding-left: 10;
+			}
+			.tf-2 {
+				width: 20%;
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+				padding-left: 0;
+			}

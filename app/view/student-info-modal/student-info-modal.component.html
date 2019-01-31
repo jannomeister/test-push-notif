@@ -1,0 +1,86 @@
+<StackLayout class="page">
+	<GridLayout columns="*,10" class="modal-action-bar">
+		<Image column="1" src="~/assets/icon/close-icon.png" class="close-icon align-right" (tap)="onClose()"></Image>
+	</GridLayout>
+	<ScrollView>
+		<StackLayout class="container vertical-center align-center">
+			<!-- IF STILL BUSY -->
+	   		<ActivityIndicator #activityIndicator [busy]="isBusy" *ngIf="isBusy" class="activity-indicator"></ActivityIndicator>
+
+			<StackLayout *ngIf="!isBusy">
+				<StackLayout 
+					*ngIf="student.hasVideo()"
+					class="align-center">
+					<YoutubePlayer 
+						id="player" 
+						apiKey="AIzaSyA3t0ySodjNpoqPTAGz-Ke7-vCVhawWyVM" 
+						[src]="videoId"
+						height="200" 
+						width="100%" 
+						backgroundColor="gray"
+					></YoutubePlayer>
+				</StackLayout>
+
+				<Label 
+					*ngIf="!student.hasVideo()"
+					text="No promotional video was found" 
+					textWrap="true" 
+					fontSize="14" 
+					fontWeight="bold"
+					class="align-center font-gray mb-10"></Label>
+				
+				<Button 
+					*ngIf="type === 'project-approved'"
+					text="Sponsor me" 
+					class="align-center yb-btn bg-blue font-white"
+					(tap)="selectStudent()"></Button>
+					
+				<StackLayout orientation="horizontal" class="p-10">
+					<StackLayout width="50%">
+						<Label class="info-lbl align-left mp-0 wrap-content font-medium">
+							<FormattedString>
+								<Span text="Name: "></Span>
+								<Span [text]="student.getFullName()"></Span>
+							</FormattedString>
+						</Label>
+						<Label class="info-lbl align-left mp-0 wrap-content font-medium">
+							<FormattedString>
+								<Span text="Age: "></Span>
+								<Span [text]="student.getAge()"></Span>
+							</FormattedString>
+						</Label>
+						<Label class="info-lbl align-left mp-0 wrap-content font-medium">
+							<FormattedString>
+								<Span text="Gender: "></Span>
+								<Span [text]="student.getGender()"></Span>
+							</FormattedString>
+						</Label>
+						<Label class="info-lbl align-left mp-0 wrap-content font-medium">
+							<FormattedString>
+								<Span text="Country: "></Span>
+								<Span [text]="student.getCountry()"></Span>
+							</FormattedString>
+						</Label>
+						<Label class="info-lbl align-left mp-0 wrap-content font-medium">
+							<FormattedString>
+								<Span text="Bands Needed: "></Span>
+								<Span [text]="totalBands"></Span>
+							</FormattedString>
+						</Label>
+					</StackLayout>
+					<StackLayout class="vertical-bottom">
+						<Image class="flag-img" [src]="student.getFlag()"></Image>
+					</StackLayout>
+				</StackLayout>
+				<StackLayout class="bio-container p-10">
+					<Label class="info-lbl align-left mp-0 wrap-content font-medium">
+						<FormattedString>
+							<Span text="Bio: "></Span>
+							<Span [text]="student.getBio()"></Span>
+						</FormattedString>
+					</Label>
+				</StackLayout>
+			</StackLayout>
+		</StackLayout>
+	</ScrollView>
+</StackLayout>

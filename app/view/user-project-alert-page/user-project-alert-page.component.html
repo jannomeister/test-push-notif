@@ -1,0 +1,28 @@
+
+<GridLayout rows="*,60" class="page">
+	<StackLayout row="0" orienation="vertical">
+		<Label class="title-lbl align-left" text="Welcome to the Team!" fontAttributes="Bold"></Label>
+		<Label text="Select how to get involved below." class="description-lbl align-left wrap-content mt-5"></Label>
+		
+		<StackLayout class="mt-5">
+			<Button 
+				class="join-project-btn yb-btn bg-transparent font-gray" 
+				text="Join a project"
+				(tap)="joinProject()"></Button>
+
+			<Label text="or"
+				class="or-lbl align-center raleway-medium"></Label>
+
+			<Button 
+				class="start-project-btn yb-btn bg-blue font-white" 
+				text="Start a project"
+				(tap)="startProject()"></Button>
+		</StackLayout>
+	</StackLayout>
+
+	<Label 
+		row="1" 
+		text="Skip" 
+		class="skip-lbl align-center"
+		(tap)="goTo()"></Label>
+</GridLayout>

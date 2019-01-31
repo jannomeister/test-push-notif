@@ -1,0 +1,91 @@
+	<StackLayout class="page">
+		<GridLayout columns="*,10" class="modal-action-bar">
+			<Label column="0" text="Schedule Skype Call" class="title-action-bar text-center"></Label>
+			<Image column="1" src="~/assets/icon/close-icon.png" class="close-icon align-right" (tap)="onClose()"></Image>
+		</GridLayout>
+		<ScrollView>
+			<StackLayout class="page-container">
+				<!-- SKYPE ID -->
+				<GridLayout class="mp-0">
+					<Label 
+						[text]="callSchedule.status" 
+						class="status-lbl align-right wrap-content font-white"
+						[ngClass]="{
+							'bg-green': callSchedule.isCallConfirmed(),
+							'bg-red': callSchedule.isCallUnconfirmed()
+						}">
+					</Label>
+					<Label 
+						text="Skype ID" 
+						class="tf-lbl font-black align-left wrap-content"></Label>
+				</GridLayout>
+				<TextField 
+					[(ngModel)]="callSchedule.skypeId"
+					[isEnabled]="!hasSchedule"
+					hint="Your Skype ID" 
+					class="bg-white mb-10" 
+					></TextField><!-- END OF SKYPE ID -->
+				
+				<!-- DAY OF CALL -->
+				<Label 
+					text="Day of call" 
+					class="tf-lbl font-black align-left wrap-content"></Label>
+				<StackLayout 
+					orientation="horizontal" 
+					class="bg-white mb-10"
+					height="40"
+					(tap)="onDateSelected()" >	
+					<Button 
+						text="Select Date" 
+						class="datetime-btn align-left wrap-content"></Button>
+					<Label 
+						[text]="selectedDate" 
+						class="datetime-lbl wrap-content align-center text-center"
+						width="70%"></Label>
+				</StackLayout><!-- END OF DAY OF CALL -->
+
+				<!-- TIME OF CALL -->
+				<Label 
+					text="Time of call" 
+					class="tf-lbl font-black align-left wrap-content"></Label>
+				<GridLayout 
+					orientation="horizontal" 
+					class="bg-white"
+					height="40">	
+					<Button 
+						text="Select Time" 
+						class="datetime-btn align-left wrap-content"></Button>
+					<StackLayout class="dd-content align-right" width="75%">
+						<!-- filter for countries -->
+				        <DropDown #dd
+							[items]="availableTimes"
+				            [(ngModel)]="selectedAvailableTime"
+				          	(closed)="onDDTimeClosed()"
+				        	class="text-center font-black"
+				        	backroundColor="#fff"
+				        	col="1"
+				        	id="DropDown"
+							[isEnabled]="hasDate && !hasSchedule"
+				        ></DropDown>
+				        <Label text="&#xf0d7;" textWrap="false" col="1" class="font-awesome align-right text-right arrow-dwn font-black"></Label>
+					</StackLayout>
+				</GridLayout>
+				<!-- END OF TIME OF CALL -->
+
+				<ActivityIndicator 
+					[busy]="isLocalTimePending" 
+					[visibility]="!isLocalTimePending? 'collapsed' : 'visible'"></ActivityIndicator>
+
+				<Label 
+					*ngIf="!isLocalTimePending"
+					class="footnote align-right wrap-content">
+					<Span [text]="studentLocalTime" class="font-bold"></Span>
+				</Label>
+				
+				<Button 
+					[text]="buttonText" 
+					(tap)="done()" 
+					class="uppercase done-btn font-white yb-btn"></Button>
+			</StackLayout>
+		</ScrollView>
+	</StackLayout>

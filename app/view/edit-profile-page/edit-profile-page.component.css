@@ -1,0 +1,69 @@
+.project-cover {
+	background-color: #1caff2;
+	position: relative;
+	height: 200;
+	margin-bottom: -110;
+}
+	.project-cover-img {
+		width: 100%;
+		height: 200;
+		opacity: .3;
+	}
+	.user-image-container {
+		width: 130;
+		height: 130;
+		border-width: 5;
+		border-color: #fff;
+		margin-bottom: 5
+	}
+		AbsoluteLayout {
+			width: 100%;
+		}
+			.user-profile-img {
+				width: 100%;
+			}
+			.icon-layout {
+				width: 100%;
+				height: 100%;
+			}
+				.camera-icon {
+					width: 50%;
+				}
+	.info-container {
+		padding: 25 20;
+	}
+		.tf-lbl {
+			font-size: 15%;
+		}
+		TextField {
+			border-color: #fff;
+			background-color: #fff;
+			padding: 20;
+			color: #222222;
+			margin-bottom: 20;
+		}
+		.dd-content {
+			margin-bottom: 20;
+		}
+			DropDown {
+				border-color: transparent;
+				background-color: white;
+				height: 70;
+			}
+			.font-awesome {
+				font-size: 18%;
+			}
+		.bday-container {
+			margin-bottom: 20;
+		}
+			.bday-dd {
+				width: 30%;
+				margin: 3;
+			}
+		Button {
+			margin: 5 0;
+		}
+		.save-btn {
+			color: white;
+			background-color: #00a9ed;
+		}

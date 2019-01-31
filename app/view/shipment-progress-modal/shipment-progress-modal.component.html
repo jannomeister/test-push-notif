@@ -1,0 +1,44 @@
+<StackLayout class="bg-yb">
+	<GridLayout class="modal-action-bar">
+		<Image 
+			src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png" 
+			width="40%"
+			class="img-logo align-center"></Image>
+		<Image 
+			column="1" 
+			src="~/assets/icon/close-icon.png" 
+			class="close-icon align-right m-10" 
+			(tap)="onClose()"></Image>
+	</GridLayout>
+	<StackLayout class="label-divider p-10 mtb-5">
+   		<Label text="shipment progress" class="footnote uppercase font-bold"></Label>
+   	</StackLayout>
+	<ScrollView>
+		<StackLayout>
+			<ListView [items]="activity" class="list-group bg-yb">
+			    <ng-template let-ship="item">
+			        <StackLayout class="p-10">
+						<Label class="shipment-lbl">
+							<FormattedString>
+								<Span text="Activity: " class="font-gray"></Span>
+								<Span [text]="ship.status" class="font-blue"></Span>
+							</FormattedString>
+						</Label>
+						<Label class="shipment-lbl">
+							<FormattedString>
+								<Span text="Date: " class="font-gray"></Span>
+								<Span [text]="ship.dateTime" class="font-black"></Span>
+							</FormattedString>		
+						</Label>
+						<Label 
+							text="Location:" 
+							class="shipment-lbl font-gray"></Label>
+						<Label 
+							[text]="ship.address" 
+							class="shipment-lbl font-black uppercase"></Label>
+					</StackLayout>
+			    </ng-template>
+			</ListView>
+		</StackLayout>
+	</ScrollView>
+</StackLayout>

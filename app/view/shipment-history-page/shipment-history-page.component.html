@@ -1,0 +1,42 @@
+<StackLayout class="bg-yb">
+	<GridLayout class="modal-action-bar">
+		<Image 
+			src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png" 
+			width="40%"
+			class="img-logo align-center"></Image>
+		<Image column="1" src="~/assets/icon/close-icon.png" class="close-icon align-right m-10" (tap)="onClose()"></Image>
+	</GridLayout>
+
+	<Label 
+		text="Shipment History" 
+		class="shipment-history-title font-bold align-center mtb-10"></Label>
+	<ListView [items]="shipmentHistory" class="list-group bg-yb">
+	    <ng-template let-ship="item">
+	        <StackLayout class="p-10">
+				<StackLayout class="p-5">
+					<Label 
+						class="shipment-history-lbl font-medium align-left wrap-content">
+							<FormattedString>
+								<Span text="Date Delivered: "></Span>
+								<Span [text]="getDate(ship.datetimeUpdated)" class="font-blue"></Span>
+							</FormattedString>
+					</Label>
+					<Label 
+						class="shipment-history-lbl font-medium align-left wrap-content">
+							<FormattedString>
+								<Span text="Confirmation status: "></Span>
+								<Span [text]="ship.confirmationStatus"></Span>
+							</FormattedString>
+					</Label>
+					<StackLayout orientation="horizontal">
+						<Label 
+							class="shipment-history-lbl font-medium align-left wrap-content"
+							text="Delivery status: "></Label>
+
+						<Label [text]="ship.status" class="shipment-history-lbl font-medium align-left wrap-content c-white p-5 bg-green r-100"></Label>
+					</StackLayout>
+				</StackLayout>
+			</StackLayout>
+	    </ng-template>
+	</ListView>
+</StackLayout>

@@ -1,0 +1,89 @@
+<actionbar [pageName]="'resources'"></actionbar>
+<GridLayout rows="*,60" class="container">
+	<ScrollView row="0">
+		<StackLayout class="resources-container">
+			<Label 
+				text="Project Resources" 
+				class="capitalize font-bold align-left header m-10 p-5"></Label>
+			<Label 
+				class="wrap-content align-left mp-0 subheader-title font-medium font-black">
+				<FormattedString>
+					<Span text="Take advantage of the next weeks to prepare for your project. The more you prepare, the more "></Span>
+					<Span text="successful your project will be."></Span>
+				</FormattedString>		
+			</Label>
+
+			<!-- <YoutubePlayer
+				#youtubePlayer
+				[src]="youtubeLink"
+				height="200" 
+				width="100%" 
+				apiKey="AIzaSyA3t0ySodjNpoqPTAGz-Ke7-vCVhawWyVM"
+				backgroundColor="gray"
+				class="mb-10"></YoutubePlayer> -->
+
+			<VideoPlayer
+	        	#videoPlayer
+		    	[src]="videoSrc"
+		    	autoplay="true"
+		    	height="200" 
+				width="100%"
+		    	class="mb-10"></VideoPlayer>
+			
+			<GridLayout 
+				class="align-center list-layout p-10" 
+				(tap)="openWalkthrough('sell')">
+				<Image 
+					src="~/assets/icon/sell-icon.png" 
+					class="icon align-left"></Image>
+				<Label 
+					text="How to Sell the Bands" 
+					class="list-lbl text-center font-medium align-center"></Label>
+				<Label 
+					text="&#xf105;" 
+					class="font-awesome align-right"></Label>
+			</GridLayout>
+			<GridLayout 
+				class="align-center list-layout p-10" 
+				(tap)="openWalkthrough('word')">
+				<Image 
+					src="~/assets/icon/photos-icon.png" 
+					class="icon align-left"></Image>
+				<Label 
+					text="How to Get the Word Out" 
+					class="list-lbl-2 text-center font-medium align-center"></Label>
+				<Label 
+					text="&#xf105;" 
+					class="font-awesome align-right"></Label>
+			</GridLayout>
+			<GridLayout 
+				class="align-center list-layout p-10" 
+				(tap)="openMedia()">
+				<Image 
+					src="~/assets/icon/download-icon.png" 
+					class="icon align-left"></Image>
+				<Label 
+					text="Downloadable Media" 
+					class="capitalize list-lbl text-center font-medium align-center"></Label>
+				<Label 
+					text="&#xf105;" 
+					class="font-awesome align-right"></Label>
+			</GridLayout>
+			<GridLayout 
+				class="align-center list-layout p-10" 
+				(tap)="open('https://www.yudabands.org/posters')">
+				<Image 
+					src="~/assets/icon/poster-icon.png" 
+					class="icon align-left"></Image>
+				<Label 
+					text="Printable Posters" 
+					class="capitalize list-lbl text-center font-medium align-center"></Label>
+				<Label 
+					text="&#xf105;" 
+					class="font-awesome align-right"></Label>
+			</GridLayout>
+		</StackLayout>
+
+	</ScrollView>
+	<tabs [activeTab]="'resources'"></tabs>
+</GridLayout>

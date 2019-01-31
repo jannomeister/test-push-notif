@@ -1,0 +1,43 @@
+
+	<actionbar [pageName]="'request'"></actionbar>
+	<GridLayout rows="*,60">
+		<StackLayout row="0" orientation="vertical">
+			<StackLayout class="label-divider p-5">
+				<Label text="request to join project" class="capitalize footnote align-left"></Label>
+			</StackLayout>
+			<StackLayout orientation="horizontal" class="user-container align-left m-5">
+				<Image 
+					[src]="data.imageUrl" 
+					class="user-image align-left" 
+				></Image>
+
+				<StackLayout class="user-info">
+					<Label 
+						[text]="data.name" 
+						class="username font-black mp-0 align-left capitalize"></Label>
+					<Label 
+						[text]="data.datetimeCreated | amTimeAgo" 
+						class="yr-level footnote font-gray mp-0 align-left"></Label>
+				</StackLayout>
+			</StackLayout>
+			<StackLayout class="p-10">
+				<Label [text]="data.reason" class="text-center"></Label>
+			</StackLayout>
+			<StackLayout orientation="horizontal" class="align-center m-5">
+				<Button 
+					class="accept capitalize font-white"  
+					text="accept" 
+					(tap)="confirmation('approved')"
+					width="50%"
+				></Button>
+
+				<Button 
+					class="decline capitalize font-black" 
+					text="decline"
+					(tap)="confirmation('rejected')"
+					width="50%"
+				></Button>
+			</StackLayout>
+		</StackLayout>
+		<tabs [activeTab]="activeTab"></tabs>
+	</GridLayout>

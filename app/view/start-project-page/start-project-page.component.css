@@ -1,0 +1,195 @@
+
+.page-container {
+	background-color: #00a9ec;
+}
+	NavigationButton {
+		padding: 0;
+		background-color: #ced;
+		border-width: 1;
+	}
+	.page-header {
+		height: 50;
+	}
+		Image {
+			width: 35;
+			height: 35;
+			color: #c6ebf7;
+			horizontal-align: left;
+			margin-left: 10;
+		}
+		.title-lbl {
+			text-align: right;
+			font-size: 20%;
+			width: 150;
+			color: #c6ebf7;
+			/*background-color: white;*/
+		}
+	.pb-container {
+		vertical-align: center;
+		horizontal-align: center;
+	}
+		Progress {
+			color: #ffb63c;
+			/*height: 50;*/
+			/*margin: 0 5;*/
+			width: 70%;
+			/*font-weight: 700;*/
+			margin-left: 20;
+			margin-top: 20;
+		}
+		.pb-lbl {
+			color: #007db4;
+			font-weight: 500;
+			font-size: 15%;
+			text-align: left;
+		}
+		.input-container {
+			margin: 5 20
+		}
+			.lbl {
+				color: #fff; /*#c6ebf7*/
+				horizontal-align: left;
+				font-size: 17%;
+				font-weight: 400;
+			}
+			.footnote {
+				font-size: 10%;
+				color: #c6ebf7;
+			}
+			.enddate {
+				padding: 0;
+				margin: 0;
+				font-size: 12%;
+				color: #c6ebf7;
+			}
+			.search-teacher-school {
+				background-color: #00a1e3;
+				height: 60;
+				width: 100%;
+				border-radius: 5;
+				padding: 10;
+				placeholder-color: white;
+			}
+				.search-schl-tchr-lbl {
+					color: #c6ebf7;
+					font-size: 18%;
+					font-weight: 100;
+				}
+				.search-icon {
+					width: 20%
+				}
+				.tf-with-btn {
+					width: 100%
+				}
+			TextField {
+				border-width: 0;
+				background-color: #00a1e3;
+				color: #c6ebf7;
+				margin: 0;
+				padding: 10 20;
+				height: 60;
+				border-radius: 5;
+				placeholder-color: #c6ebf7
+			}
+			.phone-dd, .phone-tf {
+				/*border-width: 0;*/
+				background-color: #00a1e3;
+				color: #c6ebf7;
+				margin: 0;
+				padding: 10 20;
+				height: 60;
+				/*border-radius: 5;*/
+				placeholder-color: #c6ebf7
+			}
+			.phone-dd {
+				border-radius: 0!important;
+				border-top-left-radius: 5;
+				border-bottom-left-radius: 5;
+				width: 100%;
+				padding: 10 0 !important;
+			}
+			.phone-tf {
+				border-radius: 0!important;
+				border-top-right-radius: 5;
+				border-bottom-right-radius: 5;
+			}
+			.dd-selected-lbl { 
+				font-size: 13%; 
+				margin-left: 20;
+			}
+			.dd-content {
+				/*background-color: #ccc;*/
+				background-color: #00b7f9;
+				border-radius: 5;
+				height: 60;
+			}
+				DropDown {
+					background-color: #00b7f9;
+					/*background-color: transparent;*/
+					border-radius: 5;
+					/*border-color: #00b7f9;*/
+					/*border-color: #ccc;*/
+					color: #c6ebf7;
+					/*font-weight: 100;*/
+					font-size: 15%;
+					width: 100%;
+					height: 60;
+					padding: 10 20;
+					/*margin-top: 10;*/
+					horizontal-align: left;
+					vertical-align: center;
+					z-index: -1;
+				}
+					.arrow-dwn {
+						z-index: 1;
+						color: #c6ebf7;
+						font-size: 15%;
+					}
+					.dd-month,
+					.dd-day {
+						width: 100%;
+						padding: 10 0;
+					}
+					.dd-year {
+						font-size: 12%;
+					}
+					.m-5 {
+						margin: 2;
+					}
+			.approval-container {
+				width: 90%
+			}
+				.note {
+					padding: 0;
+					margin: 0 5;
+				}
+				CheckBox { border-color: white; }
+				.checkbx { margin: 0 10; }
+			.next-btn {
+				background-color: #ffb63c;
+				color: #fff;
+				font-weight: 700;
+				margin: 10 20;
+				margin-top: 30;
+			}
+		.autocmplt {
+			border-radius: 3;
+			padding: 10 20;
+			height: 60;
+			background-color: #00a1e3;
+			color: #c6ebf7;
+			font-size: 12%;
+		}
+	.contactus-lbl { font-size: 17%; }
+
+	.progressbar {
+	    height: 10;
+	    margin: 10;
+	    border-radius: 10;
+	    border-color: #fff;
+	    border-width: 1;
+	}
+	.progressbar-value {
+	    background: #ffb63c;
+	}
+	.font-awesome { font-size: 10% }

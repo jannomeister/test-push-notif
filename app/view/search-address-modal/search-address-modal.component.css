@@ -1,0 +1,33 @@
+.actionbar {
+	background-color: white;
+	height: 50;
+	width: 100%;
+	padding: 5;
+}
+.close-icon {
+	width: 18;
+}
+.bw-2 {
+	border-width: 2;
+	/*border-color: white;*/
+}
+SearchBar {
+	width: 90%;
+	background-color: white;
+}
+.backbtn {
+	margin: 0;
+	transform: scaleX(-1);
+	height: 25;
+	width: 25;
+	margin-right: 10;
+}
+.footnote {
+	horizontal-align: left;
+	margin-bottom: 0;
+}
+ListView {
+	background-color: #fff;
+	height: 100%;
+}
+	.address-lbl { font-size: 15; }

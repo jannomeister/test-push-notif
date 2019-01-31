@@ -1,0 +1,104 @@
+.page-container {
+	background-color: #00a9ec;
+}
+	.pb-container {
+		margin: 0 20;
+	}
+		Progress {
+			color: #ffb43c; 
+			width: 85%;
+		}
+		.progress-lbl {
+			padding: 0;
+			margin: 20 0;
+		}
+		.close-icon {
+		    height: 30;
+		    width: 30;
+		    margin: 20;
+		}
+	.label-container {
+		/*background-color: #ced;*/
+		color: #c6ebf7;
+		width: 85%;
+	}
+		.congrts-lbl {
+			font-weight: 700;
+			font-size: 20;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
+		.congrts-dscrptn-lbl {
+			font-size: 18;
+			margin-top: 0;
+			padding-top: 0;
+		}
+		TextField {
+			border-width: 0;
+			background-color: #00a1e3;
+			color: #c6ebf7;
+			margin: 0;
+			padding: 10 20;
+			height: 70;
+			border-radius: 5;
+			width: 85%;
+			font-size: 18;
+			placeholder-color: #c6ebf7;
+		}
+		.tf-lbl {
+			color: #c6ebf7;
+			font-size: 18%;
+		}
+	.search-teacher-school {
+		background-color: #00a1e3;
+		height: 70;
+		width: 85%;
+		border-radius: 5;
+		padding: 10;
+	}
+		.search-icon {
+			width: 20%
+		}
+		.tf-with-btn {
+			width: 80%
+		}
+	.search-student {
+		background-color: #00a1e3;
+		height: 60;
+		width: 85%;
+		border-radius: 5;
+		padding: 10;
+		text-transform: capitalize;
+	}
+		.search-stdnt-lbl {
+			color: #c6ebf7;
+			font-size: 18;
+			font-weight: 100;
+		}
+		.search-icon {
+			height: 25;
+			width: 25;
+		}
+	.dd-content {
+		background-color: #00b7f9;
+		border-radius: 5;
+		height: 60;
+		width: 85%;
+	}
+		DropDown {
+			background-color: #00b7f9;
+			border-radius: 5;
+			color: #fff;
+			font-size: 20;
+			height: 70;
+			text-align: center;
+			width: 100%;
+			padding: 10 20;
+		}
+
+	.next-btn {
+		background-color: #ffb63c;
+		width: 85%;
+		margin-top: 35;
+		color: #fff;
+	}

@@ -1,0 +1,35 @@
+.user-image {
+	height: 70;
+}
+
+	.user-info {
+		vertical-align: center;
+		margin-left: 10;
+	}
+		.username {
+			font-size: 15;
+		}
+		.yr-level {
+			font-size: 13;
+		}
+.action-btn {
+	margin: 10
+}
+	.accept,
+	.decline {
+		width: 80;
+		height: 35;
+		font-size: 13;
+		font-weight: 700;
+		border-radius: 5;
+		margin: 5;
+	}
+	.accept {
+		background-color: #00b6f0;
+	}
+	.decline {
+		background-color: #fff;
+	}
+	.reason-content {
+		font-size: 15;
+	}

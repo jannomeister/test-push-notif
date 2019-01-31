@@ -1,0 +1,175 @@
+/*
+In NativeScript, the app.css file is where you place CSS rules that
+you would like to apply to your entire application. Check out
+http://docs.nativescript.org/ui/styling for a full list of the CSS
+selectors and properties you can use to style UI components.
+
+/*
+In many cases you may want to use the NativeScript core theme instead
+of writing your own CSS rules. For a full list of class names in the theme
+refer to http://docs.nativescript.org/ui/theme.
+*/
+@import '~nativescript-theme-core/css/core.light.css';
+/*@import url('https://fonts.googleapis.com/css?family=Tangerine');*/
+Page { background-color: #f9fafc; }
+/*ListView { margin: 5; }*/
+Span { font-family: "Raleway"; } 
+Image { background-color: transparent; }
+ActivityIndicator { margin: 5 0; }
+Label {
+    /*horizontal-align: center;*/
+    /*vertical-align: center;*/
+    /*margin: 10;*/
+    /*font-size: 30;*/
+    /*font-weight: 100;*/
+    background-color: transparent;
+    font-family: "Raleway"
+}
+TextField { 
+    border-width: 1;
+    border-style: solid;
+    border-color: #034793;
+}
+Button {
+    width: 310;
+    border-color: transparent;
+    border-width: 1;
+    border-radius: 3;
+    font-family: "Raleway"
+}
+
+.font-awesome { font-family: "FontAwesome"; }
+/*.raleway-black { font-family: "Raleway" }
+.raleway-black-italic { font-family: "Raleway Black Italic" }
+.raleway-bold { font-family: "Raleway Bold" }
+.raleway-bold-italic { font-family: "Raleway Bold Italic" }
+.raleway-extrabold { font-family: "Raleway ExtraBold" }
+.raleway-extrabold-italic { font-family: "Raleway ExtraBold Italic" }
+.raleway-extralight { font-family: "Raleway ExtraLight" }
+.raleway-extralight-italic { font-family: "Raleway ExtraLight Italic" }
+.raleway-italic { font-family: "Raleway Italic" }
+.raleway-light { font-family: "Raleway Light" }
+.raleway-light-italic { font-family: "Raleway Light Italic" }
+.raleway-medium { font-family: "Raleway Medium" }
+.raleway-medium-italic { font-family: "Raleway Medium Italic" }
+.raleway-regular { font-family: "Raleway Regular" }
+.raleway-semibold { font-family: "Raleway SemiBold" }
+.raleway-semibold-italic { font-family: "Raleway SemiBold Italic" }
+.raleway-thin-italic { font-family: "Raleway Thin Italic" }*/
+
+.bkg-transparent { background-color: transparent; }
+.bg-white { background-color: #fff; }
+.bg-transparent { background-color: transparent; }
+.bg-blue { background-color: #00a1e3; }
+.bg-inactive-blue { background-color: #81ceef; }
+.bg-green { background-color: #4ec59e; }
+.bg-red { background-color: #db4537; }
+.bg-yellow { background-color: #ffb63c; }
+.bg-gray { background-color: gray; }
+.bg-yb { background-color: #f9fafc; }
+
+.r-0 { border-radius: 0; }
+.r-3 { border-radius: 3; }
+.r-5 { border-radius: 5; }
+.r-100 { border-radius: 100%; }
+.rtr-0 { border-top-right-radius: 0 }
+.rtl-0 { border-top-left-radius: 0 }
+.rbr-0 { border-bottom-right-radius: 0 }
+.rbl-0 { border-bottom-left-radius: 0 }
+
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+
+.wrap-content { white-space: normal; }
+.align-left { horizontal-align: left; }
+.align-right { horizontal-align: right; }
+.align-center { horizontal-align: center; }
+.vertical-center { vertical-align: center; }
+.vertical-bottom { vertical-align: bottom; }
+.vertical-top { vertical-align: top; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.font-light { font-weight: 200; }
+.font-medium { font-weight: 500; }
+.font-bold { font-weight: 900; }
+.font-black { color: black; }
+.font-white { color: white; }
+.font-gray { color: gray; }
+.font-blue { color: #00a1e3; }
+.font-red { color: #db4537; }
+.font-green { color: #4ec59e; }
+.font-orange { color: #efa24e; }
+.font-yellow { color: #ffb63c; }
+.font-italic { font-style: italic; }
+.link-lbl { text-decoration: underline; }
+.text-no-decoration { text-decoration: none; }
+
+.mp-0 {
+    margin: 0;
+    padding: 0;
+}
+.m-0 { margin: 0; }
+.m-5 { margin: 5; }
+.m-10 { margin: 5; }
+.mtb-0 { margin-top: 0; margin-bottom: 0; }
+.mtb-5 { margin-top: 5; margin-bottom: 5; }
+.mtb-10 { margin-top: 10; margin-bottom: 10; }
+.mtb-20 { margin-top: 20; margin-bottom: 20; }
+.mt-0 { margin-top: 0; }
+.mt-5 { margin-top: 5; }
+.mt-10 { margin-top: 10; }
+.mt-20 { margin-top: 20; }
+.mb-0 { margin-bottom: 0; }
+.mb-5 { margin-bottom: 5; }
+.mb-10 { margin-bottom: 10; }
+.mb-20 { margin-bottom: 20; }
+.mb-30 { margin-bottom: 30; }
+
+.p-0 { padding: 0; }
+.p-5 { padding: 5; }
+.p-10 { padding: 10; }
+.ptb-0 { padding-top: 0; padding-bottom: 0; }
+.ptb-5 { padding-top: 5; padding-bottom: 5; }
+.ptb-10 { padding-top: 10; padding-bottom: 10; }
+.pt-5 { padding-top: 5; }
+.pt-10 { padding-top: 10; }
+.pt-20 { padding-top: 20; }
+.pt-30 { padding-top: 30; }
+.pb-10 { padding-bottom: 10; }
+.pb-20 { padding-bottom: 20; }
+.pb-30 { padding-bottom: 30; }
+
+.yb-tf { height: 30; }
+.h-80 { height: 75; }
+
+.error-container {  width: 50%; }
+.error-msg {
+    font-size: 10;
+    font-weight: 100;
+    color: #db4537;
+    margin: 1;
+}
+.yb-btn {
+    height: 70;
+    font-size: 18;
+    border-radius: 5
+}
+.bw-1 {
+    border-width: 1;
+    border-color: red;
+}
+.action-bar {
+    background-color: transparent;
+    border-radius: 1;
+    width: 0;
+    height: 0
+}
+.yd-logo {
+    width: 60%;
+    margin: 35 0;
+}
+.label-divider {
+    background-color: #f8f8f8;
+    margin: 0 5; 
+}

@@ -1,0 +1,162 @@
+<actionbar [pageName]="'search'"></actionbar>
+
+<StackLayout orientation="vertical">
+	<SegmentedBar 
+		[items]="items" 
+		(selectedIndexChange)="onSelectedIndexChange($event)" 
+		class="m-5"></SegmentedBar>
+
+	<StackLayout [visibility]="isEmpty ? 'visible' : 'collapsed'">
+		<no-result-page></no-result-page>
+	</StackLayout>
+
+	<StackLayout [visibility]="isInitialized ? 'collapsed' : 'visible'">
+		<ActivityIndicator
+			#activityIndicator 
+			[busy]="!isInitialized" 
+			width="50" height="50" 
+			class="activity-indicator"></ActivityIndicator>
+	</StackLayout>
+
+<!-- START: SEARCH ALL -->
+	<GridLayout [visibility]="visibility1 ? 'visible' : 'collapsed'">
+        <ListView 
+        	[items]="lists" 
+        	[visibility]="isInitialized ? 'visible' : 'collapsed'" 
+        	[itemTemplateSelector]="alltemplateSelector" 
+        	(loadMoreItems)="loadMoreItems('all')">
+
+        	<!-- FOR PROJECT -->
+			<ng-template nsTemplateKey="project" let-list="item">
+				
+		        <StackLayout 
+		        	orientation="horizontal" 
+		        	class="bg-white p-5" 
+					(tap)="goTo(list, 'project')">
+		        	<Image 
+		        		[src]="list.imageUrl" 
+		        		class="userimage m-5 vertical-top"
+		        		stretch="aspectFit"></Image>
+		        	<StackLayout height="80" class="m-5">
+		        		<Label 
+							class="wrap-content capitalize prject-name font-bold" 
+							[text]="list.schoolName"></Label>
+						<Label class="wrap-content">
+								<FormattedString>
+									<Span 
+										[text]="'by ' + list.name + ' '" 
+										class="c-black footnote capitalize"></Span>
+									<Span 
+										[visibilty]="list.schoolAddress ? 'visible' : 'collapsed' " 
+										[text]="'in ' + list.schoolAddress"
+										class="font-blue footnote"></Span>
+								</FormattedString>
+							</Label>
+		        	</StackLayout>
+				</StackLayout>
+			</ng-template>	
+
+			<!-- FOR STUDENT -->
+			<ng-template nsTemplateKey="student" let-list="item">
+				<StackLayout 
+					orientation="horizontal" 
+					class="bg-white p-5"  
+					(tap)="goTo(list, 'student')">
+		        	<Image 
+		        		[src]="list.imageUrl" 
+		        		class="userimage m-5 vertical-top"
+		        		stretch="aspectFill"></Image>
+		        	<StackLayout height="80" class="m-5">
+		        		<Label 
+							class="wrap-content username font-bold" 
+							[text]="list.firstName + ' ' + list.lastName"></Label>
+						<Label 
+							[text]="'@'+list.firstName" 
+							class="email"></Label>
+						<Label 
+							[visibilty]="list.country ? 'visible' : 'collapsed' " 
+							[text]="'in ' + list.country" 
+							class="footnote align-left">
+						</Label>
+		        	</StackLayout>
+				</StackLayout>
+			</ng-template>
+		</ListView>
+	</GridLayout>
+<!-- END: SEARCH ALL -->
+
+<!-- START: SEARCH STUDENT -->
+	<GridLayout [visibility]="visibility2 ? 'visible' : 'collapsed'">
+
+        <ListView 
+        	[items]="studentLists" 
+        	[visibility]="isInitialized ? 'visible' : 'collapsed'" 
+        	(loadMoreItems)="loadMoreItems('student')" 
+        	class="list-group">
+		    <ng-template let-list="item" let-i="index">
+		        <StackLayout 
+					orientation="horizontal" 
+					class="bg-white p-5"  
+					(tap)="goTo(list, 'student')">
+		        	<Image 
+		        		[src]="list.imageUrl" 
+		        		class="userimage m-5 vertical-top"
+		        		stretch="aspectFill"></Image>
+		        	<StackLayout height="80" class="m-5">
+		        		<Label 
+							class="wrap-content username font-bold" 
+							[text]="list.firstName + ' ' + list.lastName"></Label>
+						<Label 
+							[text]="'@'+list.firstName" 
+							class="email"></Label>
+						<Label 
+							[visibilty]="list.country ? 'visible' : 'collapsed' " 
+							[text]="'in ' + list.country" 
+							class="footnote align-left">
+						</Label>
+		        	</StackLayout>
+				</StackLayout>
+		    </ng-template>
+		</ListView>
+	</GridLayout>
+<!-- END: SEARCH STUDENT -->
+
+<!-- START: SEARCH PROJECT -->
+	<GridLayout [visibility]="visibility3 ? 'visible' : 'collapsed'">
+
+        <ListView 
+        	[items]="projectLists" 
+        	[visibility]="isInitialized ? 'visible' : 'collapsed'" 
+        	(loadMoreItems)="loadMoreItems('project')">
+			<ng-template let-list="item" let-i="index">
+		        <StackLayout 
+		        	orientation="horizontal" 
+		        	class="bg-white p-5" 
+					(tap)="goTo(list, 'project')">
+		        	<Image 
+		        		[src]="list.imageUrl" 
+		        		class="userimage m-5 vertical-top"
+		        		stretch="aspectFit"></Image>
+		        	<StackLayout height="80" class="m-5">
+		        		<Label 
+							class="wrap-content capitalize prject-name font-bold" 
+							[text]="list.schoolName"></Label>
+						<Label class="wrap-content">
+								<FormattedString>
+									<Span 
+										[text]="'by ' + list.name + ' '" 
+										class="c-black footnote capitalize"></Span>
+									<Span 
+										[visibilty]="list.schoolAddress ? 'visible' : 'collapsed' " 
+										[text]="'in ' + list.schoolAddress"
+										class="font-blue footnote"></Span>
+								</FormattedString>
+							</Label>
+		        	</StackLayout>
+				</StackLayout>
+			</ng-template>
+		</ListView>
+	</GridLayout>
+<!-- END: SEARCH PROJECT -->
+
+</StackLayout>

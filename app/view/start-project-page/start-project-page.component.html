@@ -1,0 +1,320 @@
+<StackLayout class="page-container">
+	<GridLayout columns="*,60" class="page-header">
+		<Image column="0" src="~/assets/icon/close-icon-light.png" (tap)="onClose()"></Image>
+		<Label column="1" text="Start Project" class="title-lbl font-white font-medium"></Label>
+	</GridLayout>
+
+	<ScrollView orientation="vertical">
+		<StackLayout>
+			<!-- PROGRESS -->
+			<StackLayout orientation="horizontal" class="align-center vertical-top wrap-content">
+				<Progress 
+					[value]="step" 
+					(loaded)="progressBarLoaded($event)"
+					(valueChanged)="progressValueChanged($event)"
+					class="vertical-top"></Progress>
+				<Label text=" {{step }} of 5" class="pb-lbl pt-10"></Label>
+			</StackLayout>
+			<!-- END OF PROGRESS -->
+
+			<!-- FIRST PAGE -->
+			<!-- BASIC USER INFO -->
+			<StackLayout 
+				orientation="vertical" 
+				class="input-container" 
+				[visibility]="step === 1 ? 'visible' : 'collapsed'">
+
+				<!-- FULL NAME -->
+				<Label text="Full Name" class="lbl capitalize mtb-5"></Label>
+				<TextField 
+					[text]="user.getFullName()"
+					hint="Your full name..."  
+					editable="false" 
+					required="true"
+					class="yb-tf"></TextField>
+				<!-- END OF FULL NAME -->
+
+				<!-- EMAIL -->
+				<Label text="Email" class="lbl mtb-5"></Label>
+				<TextField  
+					[text]="project.email"
+					hint="myname@email.com"
+					editable="false"
+					class="yb-tf"></TextField>
+				<!-- END OF EMAIL -->
+
+				<!-- PHONE NUMBER -->
+				<Label text="Phone Number" class="lbl mtb-5"></Label>
+				<TextField  
+					[(ngModel)]="project.phoneNumber"
+					[text]="project.phoneNumber"
+					hint="000-000-0000"
+					keyboardType="number"
+					class="yb-tf"></TextField>
+				<!-- END OF PHONE NUMBER -->
+			</StackLayout>
+			<!-- END OF FIRST PAGE -->
+
+			<!-- SECOND PAGE -->
+			<!-- SCHOOL INFO -->
+			<StackLayout 
+				orientation="vertical" 
+				class="input-container" 
+				[visibility]="step === 2 ? 'visible' : 'collapsed'">
+
+				<!-- SCHOOL NAME -->
+				<Label text="School" class="lbl mtb-5"></Label>
+				<StackLayout orientation="horizontal" class="search-teacher-school">
+					<TextField 
+						[ngModel]="project.schoolName"
+						(ngModelChange)="modelChange($event, 'schoolName')"
+						hint="Your school's name..."
+						class="tf-with-btn yb-tf"></TextField>
+				</StackLayout>
+				<!-- END OF SCHOOL NAME -->
+
+				<!-- SCHOOL ADDRESS -->
+				<Label class="lbl mtb-5" textWrap="true">
+					<FormattedString>
+						<Span text="School Address "></Span>
+						<Span text="(No PO box only US schools)" class="footnote wrap-content"></Span>
+					</FormattedString>
+				</Label>
+				<StackLayout orientation="horizontal" class="search-address">
+					<TextField 
+						hint="Search Address" 
+						(tap)="searchAddress()"
+						editable="false" 
+						[(ngModel)]="project.schoolAddress"
+						class="tf-with-btn yb-tf"></TextField>
+					<Image src="~/assets/icon/search-icon.png" class="search-icon" (tap)="searchAddress()"></Image>
+				</StackLayout>
+				<!-- END OF SCHOOL ADDRESS -->
+
+				<!-- GROUP SPONSOR (SCHOOL CLUB) -->
+			    <Label text="Group sponsoring your project" class="lbl mtb-5"></Label>
+			    <GridLayout columns="*,auto" class="dd-content">
+					<DropDown #dd
+	                	[items]="schoolClubTypes"
+	                	[(ngModel)]="schoolClubSelected"
+	                	(selectedIndexChanged)="onDropdownChanged($event, 'school-club')" 
+	                	(closed)="onDropdownClose('school-club')"
+	                	class="text-center font-bold"></DropDown>
+			        <Label text="&#xf078;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn" marginRight="5"></Label>
+			    </GridLayout>
+
+				    <!-- IF USER CHOSE OTHER -->
+				    <TextField *ngIf="isSchoolClubOtherSelected" 
+				    	[(ngModel)]="project.clubSponsor"
+				    	hint="Name of your school club..."
+						style="margin-top: 10"
+						class="yb-tf"></TextField>
+			    <!-- END OF GROUP SPONSOR -->
+
+			    <!-- TOTAL SCHOOL ENROLLEES -->
+			    <Label text="How Many Students Attend your School" class="lbl wrap-content mtb-5"></Label>
+			    <!-- <StackLayout orientation="horizontal" class="search-teacher-school"> -->
+					<TextField 
+						[ngModel]="project.schoolEnrollees"
+						(ngModelChange)="modelChange($event, 'schoolEnrollees')"
+						hint="00" 
+						keyboardType="number"
+						class="tf-with-btn yb-tf"></TextField>
+
+					<!-- <TextField 
+						hint="00" 
+						[ngModel]="project.schoolEnrollees"
+						(ngModelChange)="modelChange($event, 'schoolEnrollees')"
+						class="tf-with-btn yb-tf"
+						keyboardType="number"></TextField> -->
+				<!-- </StackLayout> -->
+			    <!-- END OF TOTAL SCHOOL ENROLLEES -->
+			</StackLayout>
+
+			<!-- THIRD PAGE -->
+			<!-- USER INFO FOR SCHOOL -->
+			<StackLayout 
+				orientation="vertical" 
+				class="input-container" 
+				[visibility]="step === 3 ? 'visible' : 'collapsed'">
+
+				<!-- SCHOOL POSITION (STUDENT, TEACHER) -->
+				<Label text="Select your school position" class="lbl mtb-5"></Label>
+				<GridLayout 
+					class="dd-content">
+					<DropDown #dd
+	                	[items]="affiliationTypes"
+	                	[(ngModel)]="affiliationSelected"
+	                	(selectedIndexChanged)="onDropdownChanged($event, 'affiliation')" 
+	                	(closed)="onDropdownClose('affiliation')"
+	                	class="text-center font-bold"></DropDown>
+			        <Label text="&#xf078;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn" marginRight="5"></Label>
+			    </GridLayout>
+			    <!-- END OF SCHOOL POSItION -->
+
+			    <!-- AFFILIATION (DEPENDS OF THE SCHOOL POSITION) -->
+			    <Label text="Select your affiliation" class="lbl mtb-5"></Label>
+			    <GridLayout columns="*,auto" class="dd-content">
+					<DropDown #dd
+						*ngIf="affiliationSelected === 0"
+	                	[items]="affiliationStudentTypes"
+	                	[(ngModel)]="affiliationTypeSelected"
+	                	(selectedIndexChanged)="onDropdownChanged($event, 'affiliation-type')" 
+	                	(closed)="onDropdownClose('affiliation-type')"
+	                	class="text-center font-bold"></DropDown>
+			        <Label text="&#xf078;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn" marginRight="5"></Label>
+
+			        <DropDown #dd
+						*ngIf="affiliationSelected === 1"
+	                	[items]="affiliationTeacherTypes"
+	                	[(ngModel)]="affiliationTypeSelected"
+	                	(selectedIndexChanged)="onDropdownChanged($event, 'affiliation-type')" 
+	                	(closed)="onDropdownClose('affiliation-type')"
+	                	class="text-center font-bold"></DropDown>
+			        <Label text="&#xf078;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn" marginRight="5"></Label>
+			    </GridLayout>
+			    <!-- END OF AFFILIATION -->
+
+			    <!-- TEACHER NAME -->
+			    <Label 
+			    	*ngIf="isStudentSelected" 
+			    	text="Teacher Sponsoring your Project" 
+			    	class="lbl mtb-5"></Label>
+			    <StackLayout *ngIf="isStudentSelected"
+			    	orientation="horizontal" class="search-teacher-school" >
+					<TextField 
+						[ngModel]="project.teacherName"
+						(ngModelChange)="modelChange($event, 'teacherName')"
+						hint="Teacher's full name"
+						class="tf-with-btn yb-tf"></TextField>
+				</StackLayout>
+			    <!-- END OF TEACHER NAME -->
+
+			    <!-- TEACHER EMAIL -->
+			    <Label *ngIf="isStudentSelected" 
+			    	text="Teacher's school email" class="lbl mtb-5"></Label>
+				<TextField 
+					*ngIf="isStudentSelected"
+					[ngModel]="project.teacherEmail"
+					(ngModelChange)="modelChange($event, 'teacherEmail')"
+					hint="teacher-name@email.com" 
+					keyboardType="email"
+					class="tf-with-btn yb-tf"></TextField>
+			    <!-- END OF TEACHER EMAIL -->
+			</StackLayout>
+			<!-- END OF THIRD PAGE -->
+
+			<!-- FOURTH PAGE -->
+			<!-- SET A DATE -->
+			<StackLayout 
+				orientation="vertical"
+				class="input-container"
+				[visibility]="step === 4 ? 'visible' : 'collapsed'">
+				
+				<Label text="Preferred day and month to run your two week project." 
+					textWrap="true" 
+					class="lbl wrap-content mtb-5"></Label>
+
+				<StackLayout orientation="horizontal">
+					<GridLayout columns="*,auto" class="dd-content m-5" width="40%">
+						<DropDown #dd
+				            [items]="months"
+				            [(ngModel)]="monthSelected"
+				            (selectedIndexChanged)="onChangeMonth($event)"
+				            class="text-center font-bold wrap-content dd-month"></DropDown>
+				        <Label text="&#xf078;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn" marginRight="5"></Label>
+				    </GridLayout>
+				    <GridLayout columns="*,auto" class="dd-content m-5" width="30%">
+						<DropDown #dd
+				        	[items]="days"
+			                [(ngModel)]="daySelected"
+				            (selectedIndexChanged)="onChangeDay($event)"
+				            class="text-center font-bold wrap-content dd-day"></DropDown>
+				        <Label text="&#xf078;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn" marginRight="5"></Label>
+				    </GridLayout>
+				    <GridLayout columns="*,auto" class="dd-content m-5" width="30%">
+						<DropDown #dd
+				        	[items]="years"
+			                [(ngModel)]="yearSelected"
+				            (selectedIndexChanged)="onChangeYear($event)"
+				            class="text-center font-bold wrap-content dd-year"></DropDown>
+				        <Label text="&#xf078;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn" marginRight="5"></Label>
+				    </GridLayout>
+				</StackLayout>
+				<Label class="enddate align-right wrap-content">
+					<FormattedString>
+						<Span text="Ends on " class="font-medium"></Span>
+						<Span [text]="formattedDateEnd" class="font-medium"></Span>
+					</FormattedString>
+				</Label>
+			</StackLayout>
+			<!-- END OF FOURTH PAGE -->
+
+			<!-- FIVE PAGE -->
+			<!-- OTHER IMPORTANT INFO -->
+			<StackLayout orientation="vertical" 
+				class="input-container" 
+				[visibility]="step === 5 ? 'visible' : 'collapsed'">
+
+				<!-- HEARD FROM -->
+				<Label text="Where did you learn about Yuda Bands?" class="lbl wrap-content mtb-5"></Label>
+
+				<GridLayout columns="*,auto" class="dd-content">
+					<DropDown #dd
+	                	[items]="heardFromLists"
+	                	[(ngModel)]="heardFromSelected"
+	                	(selectedIndexChanged)="onDropdownChanged($event, 'heard-from')" 
+	                	(closed)="onDropdownClose('heard-from')"
+	                	class="text-center font-bold wrap-content"></DropDown>
+	                <!-- <Label [text]="refValue" class="font-white capitalize lbl"></Label> -->
+			        <Label text="&#xf078;" textWrap="false" col="0" class="font-awesome align-right text-right arrow-dwn" marginRight="5"></Label>
+				</GridLayout>
+
+					<!-- IF USER CHOSE CONVENTION -->
+					<TextField *ngIf="!isHeardFromOtherSelected && isHeardFromConventionSelected"
+				    	[(ngModel)]="project.heardFrom"
+				    	hint="Where did you hear about us?"
+				    	isEnabled="false"
+						style="margin-top: 10"
+						class="yb-tf"></TextField>
+
+					<!-- IF USER CHOSE OTHER -->
+				    <TextField *ngIf="isHeardFromOtherSelected && !isHeardFromConventionSelected"
+				    	[(ngModel)]="project.heardFrom"
+				    	hint="Where did you hear about us?"
+						style="margin-top: 10"
+						class="yb-tf"></TextField>
+
+				<!-- END OF HEARD FROM -->
+
+				<Label text="Do you have approval from your school to sell Yuda Bands?" class="lbl mtb-5" textWrap="true"></Label>
+				<StackLayout class="checkbx">
+					<StackLayout orientation="horizontal">
+						<CheckBox #checkbx
+							fontSize="18"
+							color="#c6ebf7"
+							fillColor="#c6ebf7"
+							tintColor="#c6ebf7"
+							onTintColor="#00a1e3"
+							text="Yes, I have approval"
+							(checkedChange)="checkedBoxChanged(checkbx)"
+							[checked]="isChecked"></CheckBox>
+					</StackLayout>
+				</StackLayout>
+			</StackLayout>
+			<!-- END OF FIVE PAGE -->	
+
+			<!-- NAVIGATION BUTTONS -->
+			<Button 
+				[text]="buttonText" 
+				(tap)="next()"
+				class="next-btn yb-btn mb-0"></Button>
+
+			<Label 
+				text="Need help?" 
+				class="contactus-lbl link-lbl font-white font-medium align-center" 
+				(tap)="help()"></Label>
+			<!-- END OF NAVIGATION BUTTONS -->
+		</StackLayout>
+	</ScrollView>
+</StackLayout>

@@ -1,0 +1,91 @@
+<StackLayout class="bg-yb">
+	<StackLayout orientation="horizontal" class="profile-cover" >
+		<StackLayout class="user-label">
+			<Label [text]="user.getFullName()" class="user-fullname"></Label>
+			<Label [text]="user.getUserName()" class="user-email"></Label>
+		</StackLayout>
+	</StackLayout>
+	<!-- <StackLayout class="user-image-container vertical-center r-100"> -->
+		<GridLayout class="user-image-container vertical-center r-100 mb-10">
+			<ActivityIndicator 
+		        	#activityIndicator 
+		        	height="30"
+		        	width="30"
+ 		        	[busy]="!isInitialized" 
+		        	class="activity-indicator vertical-center"></ActivityIndicator>
+			<Image [src]="user.imageUrl" stretch="aspectFill" class="user-image "></Image>
+		</GridLayout>
+	<!-- </StackLayout>  -->
+	<Label text="project manager" class="capitalize pm-lbl mp-0 text-center mb-30"></Label>
+	<StackLayout 
+		class="pm-info-container align-center"
+		width="100%">
+		<StackLayout 
+			orientation="horizontal" 
+			marginLeft="15%"
+			width="65%">
+			<Image src="~/assets/icon/instagram-icon.png" class="align-left img-icon"></Image>
+			
+			<Label 
+				class="align-left pm-info-details wrap-content font-bold"
+				text="@phillipwhiting"></Label>
+		</StackLayout>
+
+		<StackLayout 
+			orientation="horizontal" 
+			marginLeft="15%"
+			width="65%"
+			(tap)="mailTo()">
+			<Image src="~/assets/icon/envelope.png" class="align-left img-icon"></Image>
+			
+			<Label 
+				class="align-left pm-info-details wrap-content font-bold font-blue link-lbl"
+				[text]="user.email"></Label>
+		</StackLayout>
+		
+		<StackLayout 
+			orientation="horizontal" 
+			marginLeft="15%"
+			width="65%"
+			(tap)="showPhoneOption()">
+			<Image src="~/assets/icon/call-answer.png" class="align-left img-icon"></Image>
+			
+			<Label 
+				class="align-left pm-info-details wrap-content font-bold font-blue link-lbl"
+				[text]="user.phoneNumber"></Label>
+		</StackLayout>
+		
+		<StackLayout 
+			orientation="horizontal" 
+			marginLeft="15%"
+			width="65%">
+			<Image src="~/assets/icon/user.png" class="align-left img-icon"></Image>
+			
+			<Label class="align-left pm-info-details wrap-content">
+				<FormattedString>
+					<Span text="with Yuda Bands since "></Span>
+					<Span [text]="user.getMemberYear()" class="font-bold"></Span>
+				</FormattedString>
+			</Label>
+		</StackLayout>
+		
+		<StackLayout 
+			orientation="horizontal" 
+			marginLeft="15%"
+			width="65%">
+			<Image src="~/assets/icon/placeholder-for-map.png" class="align-left img-icon"></Image>
+			
+			<Label class="align-left pm-info-details wrap-content">
+				<FormattedString>
+					<Span text="Lives in "></Span>
+					<Span [text]="user.address" class="font-bold"></Span>
+				</FormattedString>
+			</Label>
+		</StackLayout>
+		<Button 
+			text="Close" 
+			width="50%"
+			class="yb-btn bg-transparent c-black"
+			(tap)="onClose()"></Button>
+	</StackLayout>
+</StackLayout>

@@ -1,0 +1,934 @@
+<actionbar [pageName]="'project'"></actionbar>
+
+<GridLayout rows="*,60">
+
+	<StackLayout *ngIf="!isInitialized">
+		<shimmer [type]="'project'"></shimmer>
+	</StackLayout>
+
+	<ScrollView row="0" *ngIf="isInitialized">
+		<StackLayout>
+			<!-- START: BANDS SHIPMENT REMINDER -->
+				<StackLayout 
+					[visibility]="(isUserProject && !isMember && shipment.isDelivered())? 'visible' : 'collapsed'"
+					class="m-5 p-10 pt-30 bg-blue r-3 vertical-top shipment-container">
+					<Image 
+						src="~/assets/icon/box.png" 
+						class="box-img mb-20" 
+						height="120" 
+						width="120"></Image>
+
+						<StackLayout >
+							<Label 
+								text="Did you receive your bands already?" 
+								class="shipment-lbl c-white wrap-content align-center font-bold m-0"></Label>
+							<Label 
+								text="How many did you receive?" 
+								class="shipment-lbl c-white wrap-content align-center font-bold m-0"></Label>
+								
+							<GridLayout 
+								columns="2*,*" 
+								class="m-10 mb-20">
+								<TextField 
+									col="0" 
+									height="40" 
+									keyboardType="number"
+									class="band-amount-tf m-5 r-3 p-10 c-white text-right" 
+									hint="0 Pcs"
+									[(ngModel)]="confirmShipment.bandsReceived"></TextField>
+
+								<Button 
+									col="1" 
+									class="bg-white c-black font-bold" 
+									height="40" 
+									text="Send"
+									(tap)="confirmShipmentItem()"></Button>
+							</GridLayout>
+						</StackLayout>
+				</StackLayout>
+			<!-- END: BANDS SHIPMENT REMINDER -->
+
+			<!-- START: PROJECT TABS -->
+			<StackLayout orientation="horizontal" *ngIf="isUserProject" class="m-5">
+				<Button 
+					text="My Project" 
+					width="25%"
+					height="30"
+					[ngClass]="{'bg-yellow font-white': tabBtn.project.isActive }"
+					class="tab-btn1 bg-transparent c-black wrap-content text-center font-bold r-100 rtr-0 rbr-0"
+					(tap)="onSelectedTabItemChange(0)"></Button>
+				<Button 
+					text="My Progress" 
+					width="25%"
+					height="30"
+					[ngClass]="{'bg-yellow font-white':tabBtn.progress.isActive }"
+					class="tab-btn1 bg-transparent c-black wrap-content text-center font-bold r-0 bwl-0"
+					(tap)="onSelectedTabItemChange(1)"></Button>
+				<Button 
+					text="My Student" 
+					width="25%"
+					height="30"
+					[ngClass]="{'bg-yellow font-white':tabBtn.student.isActive }"
+					class="tab-btn1 bg-transparent c-black wrap-content text-center font-bold r-0 bwl-0"
+					(tap)="onSelectedTabItemChange(2)"></Button>
+				<Button 
+					text="Finalization" 
+					width="25%"
+					height="30"
+					[ngClass]="{'bg-yellow font-white':tabBtn.finalization.isActive }"
+					class="tab-btn1 bg-transparent c-black wrap-content text-center font-bold r-100 rtl-0 rbl-0 bwl-0"
+					(tap)="onSelectedTabItemChange(3)"></Button>
+			</StackLayout>
+			<StackLayout orientation="horizontal" *ngIf="isMember" class="m-5">
+				<Button 
+					text="Project" 
+					width="33%"
+					height="30"
+					[ngClass]="{'bg-yellow font-white': tabBtn.project.isActive }"
+					class="tab-btn bg-transparent c-black wrap-content text-center font-bold r-100 rtr-0 rbr-0"
+					(tap)="onSelectedTabItemChange(0)"></Button>
+				<Button 
+					text="Progress" 
+					width="33%"
+					height="30"
+					[ngClass]="{'bg-yellow font-white':tabBtn.progress.isActive }"
+					class="tab-btn bg-transparent c-black wrap-content text-center font-bold r-0 bwl-0"
+					(tap)="onSelectedTabItemChange(1)"></Button>
+				<Button 
+					text="Student" 
+					width="33%"
+					height="30"
+					[ngClass]="{'bg-yellow font-white':tabBtn.student.isActive }"
+					class="tab-btn bg-transparent c-black wrap-content text-center font-bold r-100 rtl-0 rbl-0 bwl-0"
+					(tap)="onSelectedTabItemChange(2)"></Button>
+			</StackLayout>
+			<!-- END: PROJECT TABS -->
+			<StackLayout [visibility]="tabBtn.project.isActive ? 'visible' : 'collapsed'">
+				<!-- START: USER PERSONAL INFO -->
+				<StackLayout
+					[ngClass]="{
+						'user-personalinfo-container': (isUserProject || isMember),
+						'project-personalinfo-container mtb-5': (!isUserProject && !isMember)
+					}">
+					<GridLayout>
+						<StackLayout class="p-20 vertical-top">
+							<Image 
+								[src]="user.imageUrl" 
+								class="user-img r-100 m-10 mt-20" 
+								height="100" 
+								width="100"
+								stretch="aspectFit"></Image>
+
+							<Label 
+								[text]="user.getFullName()"
+								class="userfullname-lbl m-0 c-white font-bold text-center"></Label>
+
+							<Label 
+								text="project leader"
+								class="communityrole-lbl m-0 c-white font-medium text-center capitalize"></Label>
+						</StackLayout>
+
+						<Label 
+							[visibility]="isUserProject || isMember ? 'visible' : 'collapsed'"
+							text="Show shipment history" 
+							class="shipment-lbl c-white wrap-content align-center font-medium m-5 link-lbl vertical-bottom"
+							(tap)="openShipmentHistory()"></Label>
+					</GridLayout>
+				</StackLayout>
+				<!-- END: USER PERSONAL INFO -->
+
+				<!-- START: PROJECT INFO -->
+				<StackLayout class="projectinfo-container p-10 bg-yb">
+					<Label 
+						[text]="project.getSchoolName()"
+						class="schoolname-lbl m-0 c-black font-medium align-left capitalize"></Label>
+					<Label 
+						[text]="project.getDateDuration()"
+						class="other-schoolinfo-lbl m-0 c-black font-medium align-left capitalize wrap-content"></Label>
+					<Label 
+						[text]="project.schoolAddress"
+						class="other-schoolinfo-lbl m-0 c-black font-medium align-left capitalize wrap-content"></Label>
+					<Label 
+						[text]="project.totalBands + ' bands ordered'"
+						class="other-schoolinfo-lbl m-0 c-black font-medium align-left capitalize wrap-content"
+						[visibility]="(isUserProject || isMember)? 'visible' : 'collapsed'"></Label>
+					<Label 
+						[text]="'Sponsoring '+ student.getFullName()"
+						[visibility]="student.getFullName()? 'visible' : 'collapsed'"
+						class="other-schoolinfo-lbl m-0 c-black font-medium align-left capitalize wrap-content"></Label>
+					<Label 
+						text="No student to sponsor yet"
+						[visibility]="!student.getFullName()? 'visible' : 'collapsed'"
+						class="other-schoolinfo-lbl m-0 c-black font-medium align-left wrap-content"></Label>
+					<Label 
+						[text]="'Call schedule ' + callSchedule.getSchedule()"
+						class="other-schoolinfo-lbl m-0 font-blue font-medium align-left capitalize wrap-content"
+						[visibility]="(isUserProject || isMember)? 'visible' : 'collapsed'"></Label>
+				</StackLayout>
+				<!-- END: PROJECT INFO -->
+
+				<!-- START: TRACK MY PACKAGE -->
+				<StackLayout 
+					orientation="horizontal"
+					(tap)="viewShipmentStatus()"
+					[visibility]="isUserProject ? 'visible' : 'collapsed'"
+					class="track-package-container m-5 r-3 p-10 align-center"
+					[ngClass]="{ 'bg-blue': shipment.isActive(), 'bg-gray': !shipment.isActive() }">
+					<Image 
+						col="0"
+						src="~/assets/icon/box.png" 
+						class="track-package-img align-center"
+						stretch="aspectFit"></Image>
+					<Label
+						col="1"
+						text="Track my package"
+						class="track-package-lbl capitalize c-white font-bold"></Label>
+				</StackLayout>
+				<!-- END: TRACK MY PACKAGE -->
+
+				<!-- START: BAND REPORT -->
+				<GridLayout height="150" class="bg-yb p-5 pt-10 r-3">
+					<StackLayout
+						width="50%"
+						class="bg-blue align-left p-5">
+						<Label 
+							[text]="project.bandsSold"
+							class="bands-sold-lbl1 c-white font-bold align-left wrap-content m-0"></Label>
+						<Label 
+							text="yuda bands sold"
+							class="bands-sold-lbl2 capitalize c-white font-medium align-left wrap-content m-0"></Label>
+					</StackLayout>
+
+					<StackLayout
+						width="50%"
+						class="bg-yellow align-right p-10">
+						<Label
+							[text]="project.getRaisedMoney()" 
+							class="raised-money-lbl1 c-white align-left font-bold wrap-content m-0"></Label>
+						<Label
+							text="Raised Money"
+							class="raised-money-lbl2 c-white align-left font-medium wrap-content m-0 mb-5"></Label>
+						<Label
+							[text]="project.totalMembers + ' Volunteers'" 
+							class="volunteers-lbl c-white align-left font-bold wrap-content m-0 "></Label>
+						<Label
+							[text]="'from ' + project.getSchoolName()" 
+							class="volunteers-lbl c-white align-left font-medium wrap-content m-0 "></Label>
+					</StackLayout>
+				</GridLayout>
+				<!-- END: BAND REPORT -->
+
+				<!-- START: BUTTONS [UPDATE NUMBERS, INVITE VOLUNTEERS] -->
+				<GridLayout class="bg-yb p-5 vertical-top">
+					<Button
+						text="Update numbers"
+						class="update-btn bg-white c-black font-medium capitalize p-5 align-left r-3"
+						(tap)="updateNumbers()"
+						[visibility]="isUserProject? 'visible' : 'collapsed'"></Button>
+					<Button
+						text="Join this project"
+						class="update-btn bg-white c-black font-medium capitalize p-5 align-center r-3"
+						(tap)="joinProject()"
+						[visibility]="!hasProject ? 'visible' : 'collapsed'"></Button>
+					<Button
+						text="View volunteers"
+						class="update-btn bg-white c-black font-medium capitalize p-5 align-right r-3"
+						(tap)="openVolunteersList()"
+						[visibility]="isUserProject? 'visible' : 'collapsed'"></Button>
+				</GridLayout>
+				<!-- END: BUTTONS [UPDATE NUMBERS, INVITE VOLUNTEERS] -->
+			</StackLayout>
+
+			<StackLayout
+				class="student-container bg-yb align-left m-5 p-10 ptb-0"
+				[visibility]="(!isUserProject && !isMember)? 'visible' : 'collapsed'">
+					<Label 
+						[text]="student.getFullName()"
+						class="student-name-lbl font-bold c-black align-left m-0 wrap-content capitalize"></Label>
+					<Label 
+						[text]="'From: ' + student.getCountry()" 
+						class="student-lbl font-medium c-black align-left m-0 wrap-content"></Label>
+					<Label 
+						[text]="'Age: ' + student.getAge()"
+						class="student-lbl font-medium c-black align-left m-0 wrap-content"></Label>
+					<Label 
+						[text]="'Gender: ' + student.getGender()"
+						class="student-lbl font-medium c-black align-left m-0 mb-10 wrap-content"></Label>
+				 
+				<StackLayout>
+					<Label 
+						*ngIf="!student.hasVideo()"
+						text="No promotional video was found" 
+						textWrap="true" 
+						fontSize="14" 
+						fontWeight="bold"
+						class="align-center font-gray"></Label>
+				</StackLayout>
+
+			</StackLayout>
+
+			<StackLayout 
+				*ngIf="student.hasVideo()"
+				[visibility]="(!isUserProject && !isMember)? 'visible' : 'collapsed'"
+				class="m-5">
+				<YoutubePlayer 
+					id="player" 
+					apiKey="AIzaSyA3t0ySodjNpoqPTAGz-Ke7-vCVhawWyVM" 
+					[src]="videoId"
+					height="200" 
+					backgroundColor="#ccc"
+					class="align-left"
+				></YoutubePlayer>
+			</StackLayout>
+
+			<StackLayout>
+				<!-- START: MY PROGRESS -->
+				<StackLayout 
+					class="m-5 mt-0 p-10 r-5 progress-container"
+					[visibility]="tabBtn.progress.isActive ? 'visible' : 'collapsed'">
+					<Label 
+						text="My Progress" 
+						class="myprogress-lbl font-bold c-black align-left m-0 mb-10"></Label>
+					<Label 
+						text="This is a step by step list to walk you through your project" 
+						class="progress-lbl font-medium c-black align-left m-0 mb-10 wrap-content"></Label>
+
+					<GridLayout columns="*,10*" orientation="horizontal" marginBottom="4" maxHeight="25" class="vertical-top project-setup">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; " 
+							(tap)="toggleWatchVideo()"
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="progress.watchVideos? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							(tap)="toggleWatchVideo()"
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="!progress.watchVideos? 'visible' : 'collapsed'"></Label>
+						<StackLayout 
+							orientation="horizontal"
+							col="1"
+							class="mp-0">	
+							<Label col="1" 
+								class="align-left mp-0 font-black progress-lbl font-medium" 
+								text="Watch How to Videos ">
+							</Label>
+							<Label 
+								(tap)="goTo('resources')"
+								class="align-left mp-0 font-black progress-lbl font-medium">
+								<FormattedString>
+									<Span text="("></Span>
+									<Span text="here" class="font-blue link-lbl"></Span>
+									<Span text=")"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+					</GridLayout>
+
+					<GridLayout columns="*,10*" orientation="horizontal" marginBottom="4" maxHeight="25" class="vertical-top project-setup">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; "
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="progress.hasStudent? 'visible' : 'collapsed'">
+							</Label>
+
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; "
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="!progress.hasStudent? 'visible' : 'collapsed'">
+							</Label>
+
+						<StackLayout 
+							orientation="horizontal"
+							col="1"
+							class="mp-0">
+							<Label 
+								class="align-left mp-0 font-black progress-lbl font-medium"
+								text="Pick a student "></Label>
+							<Label 
+								(tap)="openSelectStudentPage()"
+								[visibility]="!progress.hasStudent && !isMember? 'visible' : 'collapsed'"
+								class="align-left mp-0 font-black progress-lbl font-medium">
+								<FormattedString>
+									<Span text="("></Span>
+									<Span text="here" class="font-blue link-lbl"></Span>
+									<Span text=")"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+					</GridLayout>
+
+					<GridLayout columns="*,10*" orientation="horizontal" marginBottom="4" maxHeight="25" class="vertical-top project-setup">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; " 
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="progress.hasOrderedBands? 'visible' : 'collapsed'"></Label>
+
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="!progress.hasOrderedBands? 'visible' : 'collapsed'"></Label>
+
+						<StackLayout 
+							orientation="horizontal"
+							col="1"
+							class="mp-0">
+							<Label 
+								class="align-left mp-0 font-black progress-lbl font-medium"
+								text="Order Yuda bands "></Label>
+							<Label 
+								(tap)="orderBands()"
+								[visibility]="!progress.hasOrderedBands && !isMember? 'visible' : 'collapsed'"
+								class="align-left mp-0 font-black progress-lbl font-medium">
+								<FormattedString>
+									<Span text="("></Span>
+									<Span text="here" class="font-blue link-lbl"></Span>
+									<Span text=")"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+					</GridLayout>
+
+					<GridLayout columns="*,10*" orientation="horizontal" marginBottom="4" maxHeight="25" class="vertical-top project-setup">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; " 
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="progress.hasSkypeCall? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="!progress.hasSkypeCall? 'visible' : 'collapsed'"></Label>
+
+						<StackLayout 
+							orientation="horizontal"
+							col="1"
+							class="mp-0">
+							<Label 
+								class="align-left mp-0 font-black progress-lbl font-medium"
+								text="Schedule skype call "></Label>
+							<Label 
+								(tap)="openScheduleSkypeModal()"
+								[visibility]="!progress.hasSkypeCall && !isMember? 'visible' : 'collapsed'"
+								class="align-left mp-0 font-black progress-lbl font-medium">
+								<FormattedString>
+									<Span text="("></Span>
+									<Span text="here" class="font-blue link-lbl"></Span>
+									<Span text=")"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+					</GridLayout>
+
+					<GridLayout columns="*,10*" orientation="horizontal" marginBottom="4" maxHeight="25" class="vertical-top project-setup">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; " 
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="progress.printedStudentProfile? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="!progress.printedStudentProfile? 'visible' : 'collapsed'"></Label>
+						<StackLayout 
+							orientation="horizontal"
+							col="1"
+							class="mp-0">	
+							<Label col="1" 
+								class="align-left mp-0 font-black progress-lbl font-medium" 
+								text="Print Student's Profile ">
+							</Label>
+							<Label 
+								[visibility]="isMember? 'collapsed' : 'visible'"
+								(tap)="onSelectedTabItemChange(2)"
+								class="align-left mp-0 font-black progress-lbl font-medium">
+								<FormattedString>
+									<Span text="("></Span>
+									<Span text="here" class="font-blue link-lbl"></Span>
+									<Span text=")"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+					</GridLayout>
+
+					<GridLayout columns="*,10*" orientation="horizontal" marginBottom="4" maxHeight="25" class="vertical-top project-setup">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; " 
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="progress.hasSharedVideos? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="!progress.hasSharedVideos? 'visible' : 'collapsed'"></Label>
+						<StackLayout 
+							orientation="horizontal"
+							col="1"
+							class="mp-0">
+							<Label class="align-left mp-0 font-black progress-lbl font-medium">
+								<FormattedString>
+									<Span text="Download "></Span>
+									<Span text="InstaBlitz " class="font-italic"></Span>
+									<Span text="Videos "></Span>
+								</FormattedString>	
+							</Label>
+							<Label 
+								(tap)="goTo('media')"
+								[visibility]="!progress.hasSharedVideos && !isMember? 'visible' : 'collapsed'"
+								class="align-left mp-0 font-black progress-lbl font-medium">
+								<FormattedString>
+									<Span text="("></Span>
+									<Span text="here" class="font-blue link-lbl"></Span>
+									<Span text=")"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+					</GridLayout>
+
+					<GridLayout columns="*,10*" orientation="horizontal" marginBottom="4" maxHeight="25" class="vertical-top project-setup">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; " 
+							(tap)="toggleOrderShirt()"
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="progress.hasOrderedShirts? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							(tap)="toggleOrderShirt()"
+							class="align-left mp-0 font-awesome font-green progress-icon font-medium"
+							[visibility]="!progress.hasOrderedShirts? 'visible' : 'collapsed'"></Label>
+							
+						<StackLayout 
+							orientation="horizontal"
+							col="1"
+							class="mp-0">	
+							<Label col="1" 
+								class="align-left mp-0 font-black progress-lbl font-medium" 
+								text="Order Yuda Bands Shirts ">
+							</Label>
+							<Label 
+								(tap)="goTo('shirt')"
+								class="align-left mp-0 font-black progress-lbl font-medium">
+								<FormattedString>
+									<Span text="("></Span>
+									<Span text="here" class="font-blue link-lbl"></Span>
+									<Span text=")"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+					</GridLayout>
+					
+				</StackLayout>
+				<!-- END: MY PROGRESS -->
+
+				<!-- START: MY STUDENT -->
+				<!-- IF HAVE STUDENT TO SPONSOR -->
+				<StackLayout
+					*ngIf="project.hasStudent()">
+					<StackLayout 
+						class="student-container bg-yb align-left m-5 mt-0 p-10"
+						[visibility]="tabBtn.student.isActive ? 'visible' : 'collapsed'">
+						<Label 
+							text="My Student"
+							class="mystudent-lbl font-bold c-black align-left m-0 mb-10"></Label>
+						<Label 
+							text="Here you will find information about the student you are sponsoring. Make sure you schedule a Skype call so you can virtually meet them! Use the printable poster to show your student body who they are helping!"
+							class="student-lbl font-medium c-black align-left m-0 mb-10 wrap-content"></Label>
+
+						<Label 
+							[text]="student.getFullName()"
+							class="student-name-lbl font-bold c-black align-left m-0 wrap-content capitalize"></Label>
+						<Label 
+							[text]="'From: ' + student.getCountry()" 
+							class="student-lbl font-medium c-black align-left m-0 wrap-content"></Label>
+						<Label 
+							[text]="'Age: ' + student.getAge()"
+							class="student-lbl font-medium c-black align-left m-0 wrap-content"></Label>
+						<Label 
+							[text]="'Gender: ' + student.getGender()"
+							class="student-lbl font-medium c-black align-left m-0 mb-10 wrap-content"></Label>
+						 
+						<StackLayout>
+							<Label 
+								*ngIf="!student.hasVideo()"
+								text="No promotional video was found" 
+								textWrap="true" 
+								fontSize="14" 
+								fontWeight="bold"
+								class="align-center font-gray"></Label>
+						</StackLayout>
+
+					</StackLayout>
+
+					<StackLayout 
+						class="m-5"
+						[visibility]="tabBtn.student.isActive ? 'visible' : 'collapsed'">
+						<YoutubePlayer 
+							id="player" 
+							*ngIf="student.hasVideo()"
+							apiKey="AIzaSyA3t0ySodjNpoqPTAGz-Ke7-vCVhawWyVM" 
+							[src]="videoid"
+							height="200" 
+							backgroundColor="#ccc"
+							class="align-left"
+						></YoutubePlayer>
+					</StackLayout>
+
+					<GridLayout 
+						class="bg-yb p-5 pt-10 vertical-top"
+						[visibility]="tabBtn.student.isActive ? 'visible' : 'collapsed'">
+						<Button
+							class="skype-btn bg-white font-blue font-medium capitalize p-5 align-left r-3"
+							(tap)="openScheduleSkypeModal()"
+							[visibility]="(isUserProject && !isMember) ? 'visible' : 'collapsed'">
+								<FormattedString>
+									<Span text="&#xf17e; " class="font-awesome"></Span>
+									<Span text="Schedule for skype"></Span>
+								</FormattedString>
+						</Button>
+						<Button
+							text="Print Profile"
+							class="student-btn bg-white c-black font-medium capitalize p-5 r-3"
+							[ngClass]="{ 'align-center': isMember, 'align-right': !isMember }"
+							(tap)="onPrintProfile()"></Button>
+					</GridLayout>
+				</StackLayout>
+				<!-- IF HAVE STUDENT TO SPONSOR -->
+
+				<!-- IF NO STUDENT TO SPONSOR -->
+				<StackLayout 
+					*ngIf="!project.hasStudent() && tabBtn.student.isActive"
+					class="empty-student-container m-5 mt-0 p-10 r-3">
+					<Label 
+						text="Sponsor a student now!"
+						class="mystudent-lbl font-bold c-black align-left m-0 mb-10"></Label>
+					<Label 
+						text="Help build a scholarship fund for the student you choose to sponsor."
+						class="mb-10 wrap-content"></Label>
+					<Button 
+						(tap)="openSelectStudentPage()"
+						text="Pick a Student"
+						class="m-10 p-10 r-3 font-white bg-blue"></Button>
+				</StackLayout>
+				<!-- IF NO STUDENT TO SPONSOR -->
+
+				<!-- END: MY STUDENT -->
+
+				<!-- START: PROJECT FINALIZATION -->
+				<StackLayout 
+					class="m-5 mt-0 p-10 r-5 finalization-container"
+					[visibility]="tabBtn.finalization.isActive ? 'visible' : 'collapsed'">
+
+					<Label 
+						text="Project Finalization"
+						class="finalization-title-lbl font-bold c-black align-left m-0 mb-10"></Label>
+					<Label 
+						text="This will walk you through the steps of how to return leftover bands and how to send donations/sales money for your student." 
+						class="finalization-lbl-1 font-medium c-black align-left m-0 mb-10 wrap-content"></Label>
+
+					<Button 
+						text="Report Final Numbers"
+						class="report-btn bg-blue font-white font-bold align-center yb-btn mtb-10"
+						(tap)="report()"></Button>
+
+					<Label 
+						text="Make sure to complete all the steps"
+						class="finalization-lbl-2 font-bold c-black align-left m-0 mb-10 wrap-content"></Label>
+
+					<GridLayout 
+						columns="*,10*" 
+						orientation="horizontal" 
+						marginBottom="4" 
+						maxHeight="25" 
+						class="vertical-top">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; "
+							(tap)="toggleCheckbox('hasShipmentLabel')"
+							class="align-left mp-0 font-awesome font-green finalization-lbl-1 font-medium"
+							[visibility]="finalProgress.hasShipmentLabel? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							(tap)="toggleCheckbox('hasShipmentLabel')"
+							class="align-left mp-0 font-awesome font-green finalization-lbl-1 font-medium"
+							[visibility]="!finalProgress.hasShipmentLabel? 'visible' : 'collapsed'"></Label>
+
+						<Label 
+							col="1" 
+							class="align-left mp-0 font-black finalization-lbl-1 font-medium" 
+							text="Print UPS return shipping label">
+						</Label>
+					</GridLayout>
+					<GridLayout 
+						columns="*,10*" 
+						orientation="horizontal" 
+						marginBottom="4" 
+						maxHeight="25" 
+						class="vertical-top">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; "
+							(tap)="toggleCheckbox('hasLeftOverBands')"
+							class="align-left mp-0 font-awesome font-green finalization-lbl-1 font-medium"
+							[visibility]="finalProgress.hasLeftOverBands? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							(tap)="toggleCheckbox('hasLeftOverBands')"
+							class="align-left mp-0 font-awesome font-green finalization-lbl-1 font-medium"
+							[visibility]="!finalProgress.hasLeftOverBands? 'visible' : 'collapsed'"></Label>
+
+						<Label 
+							col="1" 
+							class="align-left mp-0 font-black finalization-lbl-1 font-medium" 
+							text="Ship leftover bands">
+						</Label>
+					</GridLayout>
+					<GridLayout 
+						columns="*,10*" 
+						orientation="horizontal" 
+						marginBottom="4" 
+						maxHeight="25" 
+						class="vertical-top project-setup">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; "
+							(tap)="toggleCheckbox('hasSubmittedInvoice')"
+							class="align-left mp-0 font-awesome font-green finalization-lbl-1 font-medium"
+							[visibility]="finalProgress.hasSubmittedInvoice? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							(tap)="toggleCheckbox('hasSubmittedInvoice')"
+							class="align-left mp-0 font-awesome font-green finalization-lbl-1 font-medium"
+							[visibility]="!finalProgress.hasSubmittedInvoice? 'visible' : 'collapsed'"></Label>
+							
+						<Label col="1" 
+							class="align-left mp-0 font-black finalization-lbl-1 font-medium" 
+							text="Submit invoice">
+						</Label>
+					</GridLayout>
+					<GridLayout 
+						columns="*,10*" 
+						orientation="horizontal" 
+						marginBottom="4" 
+						maxHeight="25" 
+						class="vertical-top">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; "
+							(tap)="toggleCheckbox('hasConfirmPayment')"
+							class="align-left mp-0 font-awesome font-green finalization-lbl-1 font-medium"
+							[visibility]="finalProgress.hasConfirmPayment? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							(tap)="toggleCheckbox('hasConfirmPayment')"
+							class="align-left mp-0 font-awesome font-green finalization-lbl-1 font-medium"
+							[visibility]="!finalProgress.hasConfirmPayment? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="1" 
+							class="align-left mp-0 font-black finalization-lbl-1 font-medium" 
+							text="Confirm payment is sent">
+						</Label>
+					</GridLayout>
+					<GridLayout 
+						columns="*,10*" 
+						orientation="horizontal" 
+						marginBottom="4" 
+						maxHeight="25" 
+						class="vertical-top">
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf046; " 
+							class="align-left mp-0 font-awesome font-green finalization-lbl-1 font-medium"
+							[visibility]="finalProgress.hasFeedback? 'visible' : 'collapsed'"></Label>
+						<Label 
+							col="0"
+							paddingLeft="10"
+							text="&#xf096; " 
+							class="align-left mp-0 font-awesome font-green finalization-lbl-1 font-medium"
+							[visibility]="!finalProgress.hasFeedback? 'visible' : 'collapsed'"></Label>
+						<StackLayout 
+							orientation="horizontal"
+							col="1"
+							class="mp-0">	
+							<Label col="1" 
+								class="align-left mp-0 font-black progress-lbl font-medium" 
+								text="Leave feedback ">
+							</Label>
+							<Label 
+								(tap)="goTo('feedback')"
+								class="align-left mp-0 font-black progress-lbl font-medium">
+								<FormattedString>
+									<Span text="("></Span>
+									<Span text="here" class="font-blue link-lbl"></Span>
+									<Span text=")"></Span>
+								</FormattedString>
+							</Label>
+						</StackLayout>
+						<!-- <Label 
+							col="1" 
+							class="align-left mp-0 font-black finalization-lbl-1 font-medium" 
+							text="Leave feedback">
+						</Label> -->
+					</GridLayout>
+				</StackLayout>
+				<!-- END: PROJECT FINALIZATION -->
+			</StackLayout>
+			<!-- START: YUDA BANDS INFO -->
+			<StackLayout class="student-container bg-yb align-left m-5">
+				<Label 
+				text="How to continue your support" 
+				class="support-title-lbl align-left font-bold wrap-content"
+				[visibility]="(isUserProject || isMember) && tabBtn.finalization.isActive? 'visible' : 'collapsed'"></Label>
+
+				<StackLayout 
+					class="p-10"
+					[visibility]="(isUserProject || isMember)? 'visible' : 'collapsed'">
+
+					<StackLayout [visibility]="tabBtn.finalization.isActive ? 'visible' : 'collapsed'">
+						<GridLayout 
+								columns="*,10*" 
+								orientation="horizontal" 
+								marginBottom="4" 
+								maxHeight="25" 
+								class="vertical-top"
+								(tap)="openBragModal()">
+							<Label 
+								col="0"
+								paddingLeft="5"
+								text="&#xf178; " 
+								class="align-left mp-0 font-awesome font-green support-lbl font-medium"></Label>
+							<Label 
+								col="1" 
+								class="align-left mp-0 font-blue support-lbl font-medium" 
+								text="Brag your project">
+							</Label>
+						</GridLayout>
+
+						<GridLayout 
+								columns="*,10*" 
+								orientation="horizontal" 
+								marginBottom="4" 
+								maxHeight="25" 
+								class="vertical-top"
+								(tap)="openMeetStudent()">
+							<Label 
+								col="0"
+								paddingLeft="5"
+								text="&#xf178; " 
+								class="align-left mp-0 font-awesome font-green support-lbl font-medium"></Label>
+							<Label 
+								col="1" 
+								class="align-left mp-0 font-blue support-lbl font-medium" 
+								text="Meet your international student">
+							</Label>
+						</GridLayout>
+
+						<GridLayout 
+								columns="*,10*" 
+								orientation="horizontal" 
+								marginBottom="4" 
+								maxHeight="25" 
+								class="vertical-top">
+							<Label 
+								col="0"
+								paddingLeft="5"
+								text="&#xf178; " 
+								class="align-left mp-0 font-awesome font-green support-lbl font-medium"></Label>
+							<Label 
+								col="1" 
+								class="align-left mp-0 font-blue support-lbl font-medium" text="Follow us @"
+								(tap)="openSocialDialog()">
+							</Label>
+						</GridLayout>
+					</StackLayout>
+
+					<StackLayout 
+						orientation="horizontal"
+						width="70%"
+						class="">
+						<Image 
+							[src]="getManagerProfile(project.manager.imageUrl)"
+							class="pm-img r-100 align-left"
+							height="90"
+							width="90"
+							stretch="aspectFill"></Image>
+						<StackLayout 
+							col="1"
+							class="pm-info-container align-center">
+							<Label 
+								class="pm-name-lbl align-left m-0 c-black font-bold align-left" 
+								text="Hi I'm Phillip!"></Label>
+							<Label 
+								class="pm-description-lbl align-left m-0 c-black font-medium align-left capitalize wrap-content" 
+								text="Your project manager"></Label>
+							<Button 
+								class="more-info-btn bg-white c-black align-left p-5" 
+								text="More info"
+								(tap)="openProjectManagerInfoModal()"></Button>
+						</StackLayout>
+						
+					</StackLayout>
+				</StackLayout>
+				<Label text="Our Story" class="our-story-lbl capitalize m-5 font-gray font-bold align-left"></Label>
+
+				<YoutubePlayer 
+					id="player" 
+					*ngIf="project.status !== 'rejected'"
+					apiKey="AIzaSyA3t0ySodjNpoqPTAGz-Ke7-vCVhawWyVM" 
+					[src]="videoStory"
+					width="97%"
+					height="200" 
+					backgroundColor="#ccc"
+					class="align-left m-0 p-0"
+				></YoutubePlayer>
+				<Image 
+					class="yd-small-logo align-center mtb-20" 
+					src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png"></Image>
+				<Label 
+					text="Yuda Bands is a 501 (c)(3) non profit organization registered in the US." 
+					class="yudabands-info-lbl font-medium wrap-content text-center font-gray m-0 mb-10"></Label>
+				<Label 
+					[text]="'© 2009-'+project.getCurrentYear()" 
+					class="yudabands-info-lbl font-medium text-center font-gray m-0 mb-10"></Label>
+			</StackLayout>
+			<!-- END: YUDA BANDS INFO -->
+		</StackLayout>
+	</ScrollView>
+	<tabs [activeTab]="'project'"></tabs>
+</GridLayout>

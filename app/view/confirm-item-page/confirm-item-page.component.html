@@ -1,0 +1,18 @@
+
+	<StackLayout class="container bg-yb vertical-center">
+		<Label text="Enter number of Yuda Bands" class="align-center font-bold mtb-20"></Label>
+		<StackLayout orientation="horizontal" class="tf-container">
+			<TextField 
+				class="tf-1 text-center" 
+				keyboardType="phone" 
+				[(ngModel)]="shipment.bandsReceived"></TextField>
+
+			<TextField 
+				text="Pcs" 
+				editable="false" 
+				class="tf-2 text-center"></TextField>
+		</StackLayout>
+
+		<Button text="Confirm" class="bg-blue c-white uppercase yb-btn mb-10" (tap)="confirmItem()"></Button>
+		<Button text="Cancel" class="bg-white c-black uppercase yb-btn" (tap)="onClose()"></Button>
+	</StackLayout>

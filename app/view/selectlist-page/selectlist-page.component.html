@@ -1,0 +1,151 @@
+<StackLayout class="bg-white">
+	<StackLayout 
+		class="bg-white"
+		orientation="horizontal"
+		ios:horizontalAlignment="left"
+		android:horizontalAlignment="left">
+		<SearchBar
+			id="searchbar" 
+			hint="Search something..." 
+			(submit)="onSearch($event)"
+		></SearchBar>
+		<Image src="~/assets/icon/close-icon.png" class="close-icon" (tap)="onClose()"></Image>
+	</StackLayout>
+
+	<StackLayout orientation="horizontal" class="p-10" height="50">
+		
+		<StackLayout class="dd-content">
+			<!-- filter for gender -->
+			<DropDown #gendersDD
+				[items]="genders"
+	            [(ngModel)]="selectedGender"
+	          	(closed)="onDDChange('gender')"
+	        	class="text-center font-blue"
+	        	backroundColor="#fff"
+	        	id="DropDown"
+	        ></DropDown>
+		</StackLayout>
+
+		<StackLayout class="dd-content">
+			<!-- filter for countries -->
+	        <DropDown #countriesDD
+				[items]="countries"
+	            [(ngModel)]="selectedCountry"
+	          	(closed)="onDDChange('country')"
+	        	class="text-center font-blue"
+	        	backroundColor="#fff"
+	        	id="DropDown"
+	        ></DropDown>
+		</StackLayout>
+
+		<StackLayout class="dd-content">
+			<!-- filter for # of bands -->
+	        <DropDown #bandsDD
+				[items]="bands"
+	            [(ngModel)]="selectedBandsNeeded"
+	          	(closed)="onDDChange('bands')"
+	        	class="text-center font-blue"
+	        	backroundColor="#fff"
+	        	id="DropDown"
+	        ></DropDown>
+		</StackLayout>
+	</StackLayout>
+	<StackLayout class="label-divider mp-0">
+		<Label text="Select" class="footnote uppercase vertical-center mp-0 p-10"></Label>
+	</StackLayout>
+   	<StackLayout orientation="vertical">
+
+   		<ActivityIndicator 
+   			*ngIf="isBusy"
+   			#activityIndicator 
+   			[busy]="isBusy" 
+   			class="activity-indicator"></ActivityIndicator>
+
+	   	<RadListView 
+	   		#myListView
+	   		[visibility]="!isBusy? 'visible' : 'collapsed'"
+	   		height="800"
+	   		class="list-group"
+	   		[items]="lists"
+	   		loadOnDemandMode="Manual"
+	   		(loadMoreDataRequested)="loadMoreItems($event)"
+	   		pullToRefresh="true"
+	   		(pullToRefreshInitiated)="refresh($event)">
+	   		<ng-template tkListItemTemplate let-list="item">
+   				<StackLayout 
+   					orientation="horizontal" 
+   					padding="5"
+   					(tap)=openStudentInfo(list)>
+   					
+   					<Image 
+   						[src]="list.imageUrl" 
+   						stretch="aspectFill"
+   						class="mp-0"
+   						width="100" 
+   						height="100"></Image>
+
+   					<StackLayout orientation="vertical" marginTop="5" marginLeft="10" class="align-left">
+                        <Label 
+                        	[text]="list.firstName + ' ' + list.lastName"
+                        	fontSize="15"
+                        	textWrap="true"
+                        	class="mp-0 align-left font-bold font-black"></Label>
+
+                        <Label 
+                        	[text]="'in ' + list.country" 
+                        	fontSize="13"
+                        	textWrap="true"
+                        	class="mp-0 align-left font-blue font-medium"></Label>
+
+                        <Label 
+                        	[text]="getAge(list.birthDate)" 
+                        	fontSize="13"
+                        	textWrap="true"
+                        	class="mp-0 align-left font-medium  font-gray"></Label>
+
+                        <Label 
+                        	[text]="'Gender: ' + list.gender" 
+                        	fontSize="13"
+                        	textWrap="true"
+                        	class="mp-0 align-left font-medium  font-gray"></Label>
+
+                        <Label 
+                        	[text]="'GradYr: ' + list.gradYear" 
+                        	fontSize="13"
+                        	textWrap="true"
+                        	class="mp-0 align-left font-medium  font-gray"></Label>
+
+                        <Label 
+                        	[text]="'Bands needed: ' + list.remainingBands" 
+                        	fontSize="13"
+                        	textWrap="true"
+                        	class="mp-0 align-left font-medium  font-gray"></Label>
+                    </StackLayout>
+   				</StackLayout>
+	   		</ng-template>
+
+	   		<ListViewLinearLayout 
+	   			*tkIfIOS 
+	   			tkListViewLayout 
+	   			itemHeight="120"></ListViewLinearLayout>
+
+	   		<!-- >> listview-load-on-demand-custom-view -->
+            <GridLayout 
+            	[visibility]="!isLoadingItems? 'visible' : 'collapsed'"
+            	*tkListLoadOnDemandTemplate
+            	color="black"
+            	backgroundColor="white"
+            	marginBottom="8">
+                <Label 
+            		fontSize="15"
+                	text="Load more students" 
+                	horizontalAlignment="center" 
+                	verticalAlignment="center"
+                	class="font-bold font-gray mtb-10"></Label>
+            </GridLayout>
+            <!-- << listview-load-on-demand-custom-view -->
+	   	</RadListView>
+	</StackLayout>
+</StackLayout>
+
+

@@ -1,0 +1,42 @@
+
+	<StackLayout 
+		class="signin-layout login-page" 
+		orientation="vertical">
+		<Label 
+			class="sign-title align-center" 
+			text="Sign In"></Label>
+		<StackLayout>
+			<Image 
+				class="align-center yd-logo" 
+			   	src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png"></Image>
+		</StackLayout>
+		 <Button 
+		 	class="signin-fb-btn yb-btn" 
+		 	(tap)="login()">
+		 	<Span class="signin-fb-btn-icon font-awesome" text="&#xf09a;       "></Span>
+			<Span class="signin-fb-btn-label font-medium" text="Sign in with Facebook"></Span>
+		 </Button>
+		<StackLayout orientation="horizontal" class="signin-create align-center text-center">
+			<Label 
+				class="signin-lbl mp-0 font-medium" 
+				[nsRouterLink]="['/signin']" 
+				text="Sign in"></Label>
+			<Label 
+				class="signin-lbl mp-0" 
+				text=" |  "></Label>
+			<Label 
+				class="signin-lbl mp-0 font-medium" 
+				[nsRouterLink]="['/signup']" 
+				text="Create Account"></Label>
+		</StackLayout>
+		<Label 
+			class="font-medium footnote wrap-content text-center mtb-10" 
+			width="80%"
+			(tap)="open('https://www.yudabands.org/terms')">
+				<FormattedString>
+					<Span text="By signing in you accept our "></Span>
+					<Span text="Terms & conditions." class="link-lbl"></Span>
+				</FormattedString>
+			</Label>
+    </StackLayout>
+

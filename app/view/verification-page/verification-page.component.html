@@ -1,0 +1,63 @@
+<GridLayout rows="*,60" class="page-layout-container vertical-center">
+	<StackLayout row="0"  class="container mt-10">
+	        <Label text="Verification Code" class="content-title"></Label>
+	        <Label class="footnote font-white wrap-content ">
+        		<FormattedString>
+        			<Span text="Please type verification code sent to your email username@gmail.com (check your inbox or spam folder)." class="footnote font-white"></Span>
+        		</FormattedString>
+        	</Label>
+	        <StackLayout orientation="horizontal" class="code-container"> 
+		        <TextField 
+		        	id="tf-1"
+		        	hint="1" maxLength="1" keyboardType="number" 
+		        	(textChange)="onEnterCode($event, 1)" 
+		        	[(ngModel)]="tf1"></TextField>
+
+		        <TextField 
+		        	id="tf-2"
+		        	hint="2" maxLength="1" keyboardType="number" 
+		        	(textChange)="onEnterCode($event, 2)" 
+		        	[(ngModel)]="tf2"></TextField>
+
+		        <TextField 
+		        	id="tf-3"
+		        	hint="3" maxLength="1" keyboardType="number" 
+		        	(textChange)="onEnterCode($event, 3)" 
+		        	[(ngModel)]="tf3"></TextField>
+
+		        <TextField 
+		        	id="tf-4"
+		        	hint="4" maxLength="1" keyboardType="number" 
+		        	(textChange)="onEnterCode($event, 4)"
+		        	[(ngModel)]="tf4"></TextField>
+			</StackLayout>
+
+			<Button 
+				text="Verify Code" 
+				(tap)="verifyCode()" 
+				class="font-gray yb-btn verify-btn font-medium mb-5"></Button>
+
+			<StackLayout orientation="horizontal" class="resend-container">
+		        <Label class="footnote">
+		        	<FormattedString>
+		        		<Span text="Where is my code?" class="footnote font-white"></Span>
+		        	</FormattedString>
+		        </Label>
+		        <Button 
+		        	text="Resend" 
+		        	class="footnote link resend-btn font-white" 
+		        	(tap)="resendCode()"></Button>
+	    	</StackLayout>
+
+    </StackLayout>
+    <Label 
+    	row="1"
+		text="Go Back" 
+		(tap)="goBack()" 
+		class="font-gray font-bold">
+		<FormattedString>
+    		<Span text="&#xf177;  " class="font-awesome "></Span>
+    		<Span text="Go Back" class="font-bold"></Span>
+    	</FormattedString>
+	</Label>
+</GridLayout>

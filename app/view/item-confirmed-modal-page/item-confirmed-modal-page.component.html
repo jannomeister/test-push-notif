@@ -1,0 +1,29 @@
+
+	<StackLayout>
+		<GridLayout columns="*,10" class="modal-action-bar">
+			<Label column="0" text=" " class="title-action-bar text-center"></Label>
+			<Image column="1" src="~/assets/icon/close-icon.png" class="close-icon align-right" (tap)="onClose()"></Image>
+		</GridLayout>
+		<ScrollView orientation="vertical">
+			<StackLayout>
+				<StackLayout class="card-item-1">
+					<Label text="Great!" class="font-bold font-white lbl-1"></Label>
+					<Label text="Number of Bands confirmed. You can now start with your project. Goodluck!" class="font-light mp-0 wrap-content font-white lbl-2 text-center"></Label>
+				</StackLayout>
+				<StackLayout class="card-item-2">
+					<Label text="Suggested for you" class="lbl-3 font-gray"></Label>
+					<StackLayout class="card-item-21 align-center">
+						<StackLayout class="suggest-item align-left">
+							<Label class="font-bold wrap-content lbl-4 align-left">
+								<FormattedString>
+									<Span text="Yuda Bands Shirt " class="capitalize font-white"></Span>
+									<Span text="FOR SALE" class="uppercase lbl-41 font-bold"></Span>
+								</FormattedString>
+							</Label>
+							<Button text="click here" class="uppercase align-center font-white"></Button>
+						</StackLayout>
+					</StackLayout>
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+	</StackLayout>

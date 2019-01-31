@@ -1,0 +1,71 @@
+<StackLayout class="page">
+	<GridLayout columns="*,10" class="modal-action-bar">
+		<Image 
+			src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png" 
+			width="80%"
+			class="img-logo align-center"></Image>
+		<Image column="1" src="~/assets/icon/close-icon.png" class="close-icon align-right" (tap)="onClose()"></Image>
+	</GridLayout>
+	<ScrollView>
+		<StackLayout class="page-container">
+			<Label 
+				class="capitalize font-bold align-center header"
+				fontSize="25"
+				textWrap="true"
+				text="Brag your project"></Label>
+
+			<Label 
+				class="wrap-content align-center mp-0 subheader-title"
+				fontSize="15"
+				lineHeight="4"
+				marginBottom="10"
+				text="(Screenshot, crop, and share to social media)">	
+			</Label>
+
+			<GridLayout rows="auto" columns="*">
+				<ActivityIndicator 
+		        	row="0" 
+		        	col="0" 
+		        	#activityIndicator 
+		        	busy="true" 
+		        	class="activity-indicator"></ActivityIndicator>
+				<Image 
+					row="0" 
+	        		col="0" 
+					[src]="student.imageUrl"
+					stretch="aspectFill"></Image>
+			</GridLayout>
+
+			<Label 
+				marginTop="10"
+				fontSize="17"
+				color="black"
+				textWrap="true"
+				class="align-center"
+				[text]="getBragDesc()"></Label>
+
+			<Label 
+				marginTop="10"
+				fontSize="17"
+				color="black"
+				textWrap="true"
+				class="align-center"
+				text="Bring the project to your school!"></Label>
+
+			<StackLayout>
+				<StackLayout>	
+					<Image 
+						class="yd-small-logo align-center" 
+						src="~/assets/icon/Yuda-Bands-Logo-and-Name-resized.png"></Image>
+				</StackLayout>
+				<Label 
+					text="Yuda Bands is a 501 (c)(3) non profit organization registered in the US under EIN: 82-1861126." 
+					class="wrap-content text-center font-gray other-lbl"></Label>
+				<Label 
+					[text]="'© 2009-'+project.getCurrentYear()" 
+					class="text-center yr-lbl"></Label>
+			</StackLayout>
+
+		</StackLayout>
+	</ScrollView>
+</StackLayout>

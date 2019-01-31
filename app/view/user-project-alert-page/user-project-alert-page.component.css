@@ -1,0 +1,30 @@
+.page {
+    background-color: #fff;
+}
+    .close-icon {
+        height: 20;
+        width: 20;
+        margin: 30;
+    }
+    .join-project-btn {
+        border-color: #ccc;
+    }
+    Button { width: 85% }
+    .or-lbl { font-size: 15%; margin-top: 15; margin-bottom: 15; }
+    .title-lbl,
+    .description-lbl {
+        font-size: 20;
+        margin: 0 50;
+    }
+    .title-lbl {
+        margin-top: 30;
+        font-weight: 800;
+    }
+    .description-lbl {
+        font-weight: 100;
+        margin-bottom: 30;
+    }
+    .skip-lbl {
+        font-weight: 100;
+        font-size: 20;
+    }

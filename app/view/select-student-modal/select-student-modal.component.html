@@ -1,0 +1,42 @@
+
+	<StackLayout class="page-container pt-30">
+		<StackLayout class="label-container mb-10">
+			<Label 
+				class="congrts-dscrptn-lbl wrap-content align-left font-medium mb-10"
+				text="Before you select a student to sponsor, please watch this 1 minute video." ></Label>
+			<Label 
+				class="congrts-dscrptn-lbl wrap-content align-left font-medium link-lbl" 
+				(tap)="openWalkthrough('sponsor')" 
+				text="Tap here!"></Label>
+		</StackLayout>
+		<StackLayout class="label-container">
+			<Label 
+				text="Select a student" 
+				class="wrap-content align-left tf-lbl font-medium mtb-10"></Label>
+		</StackLayout>
+		<StackLayout 
+			orientation="horizontal" 
+			class="search-student ">
+			<TextField 
+				hint="Student's Name" 
+				[text]="student.getFullName()" 
+				(tap)="searchStudent()"
+				editable="false" 
+				class="tf-with-btn yb-tf"></TextField>
+			<Image 
+				src="~/assets/icon/search-icon.png" 
+				class="search-icon mtb-10" 
+				(tap)="searchStudent()"></Image>
+		</StackLayout>
+		
+		<Button 
+			text="Confirm" 
+			(tap)="confirm()" 
+			class="next-btn yb-btn mb-10"></Button>
+
+		<Button 
+			text="Skip for Now" 
+			(tap)="onClose()" 
+			width="85%"
+			class="bg-white c-black yb-btn"></Button>
+	</StackLayout>
